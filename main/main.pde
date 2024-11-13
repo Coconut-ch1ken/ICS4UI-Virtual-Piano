@@ -28,7 +28,7 @@ void draw() {
   textSize(32);
   textAlign(CENTER, CENTER);
   text("Press A, S, D, F, G, H, J to play piano keys", width / 2, height / 2 - 40);
-  pianoKeys[3].play();
+ 
   // Draw simple visual representation of keys (like rectangles)
   for (int i = 0; i < keyNames.length; i++) {
     fill(200);
@@ -43,7 +43,8 @@ void keyPressed() {
   for (int i = 0; i < keyCodes.length; i++) {
     if (key == keyCodes[i] && !keyStates[i]) {
       pianoKeys[i].rewind();  // Rewind the sound to the start (in case it's already playing)
-      pianoKeys[i].play();    // Start playing the sound
+      pianoKeys[i].play(); 
+      println("I pressed ",keyNames[i]);// Start playing the sound
       keyStates[i] = true;    // Mark this key as being pressed
     }
   }
