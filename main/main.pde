@@ -16,7 +16,7 @@ void setup(){
   
     // Load piano sound files
   for (int i = 0; i < keyNames.length; i++) {
-    pianoKeys[i] = minim.loadFile(keyNames[i] + ".mp3");
+    pianoKeys[i] = minim.loadFile(keyNames[i]+"4" + ".mp3");
   }
   
   background(255);
