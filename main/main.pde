@@ -2,21 +2,28 @@ import ddf.minim.*;
 import g4p_controls.*;
 
 Minim minim;
+int pitch;
 
 AudioPlayer[] pianoKeys = new AudioPlayer[7];
 String keyNames[] = {"C","D","E","F","G","A","B"};
 
-char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j'};  
+char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j'};
+char pitchdown = '-';
+char pitchup = '=';
+
 boolean[] keyStates = new boolean[7];
+
+int keyPitch[] = {1,2,3,4,5,6,7};
 
 void setup(){
   
   size(600,600);
   minim = new Minim(this);
+  pitch = 4;
   
     // Load piano sound files
   for (int i = 0; i < keyNames.length; i++) {
-    pianoKeys[i] = minim.loadFile(keyNames[i]+"4" + ".mp3");
+    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
   }
   
   background(255);
@@ -28,6 +35,8 @@ void draw() {
   textSize(32);
   textAlign(CENTER, CENTER);
   text("Press A, S, D, F, G, H, J to play piano keys", width / 2, height / 2 - 40);
+  textSize(18);
+  text("Pitch: " + pitch, width / 2, height / 2 - 10);
  
   // Draw simple visual representation of keys (like rectangles)
   for (int i = 0; i < keyNames.length; i++) {
@@ -44,10 +53,19 @@ void keyPressed() {
     if (key == keyCodes[i] && !keyStates[i]) {
       pianoKeys[i].rewind();  // Rewind the sound to the start (in case it's already playing)
       pianoKeys[i].play(); 
-      println("I pressed ",keyNames[i]);// Start playing the sound
+      println("I pressed " + keyNames[i] + pitch);// Start playing the sound
       keyStates[i] = true;    // Mark this key as being pressed
     }
   }
+  if (key == pitchdown){
+    pitch--;
+    if (pitch < 0){pitch = 0;}
+  } else
+  if (key == pitchup){
+    pitch++;
+    if (pitch > 7){pitch = 7;}
+  }
+  
 }
 
 void keyReleased() {
