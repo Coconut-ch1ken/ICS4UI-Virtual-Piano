@@ -4,9 +4,9 @@ import g4p_controls.*;
 Minim minim;
 
 AudioPlayer[] pianoKeys = new AudioPlayer[7];
-String keyNames[] = {"A","B","C","D","E","F","G"};
+String keyNames[] = {"C","D","E","F","G","A","B"};
 
-int[] keyCodes = {65, 83, 68, 70, 71, 72, 74};  
+char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j'};  
 boolean[] keyStates = new boolean[7];
 
 void setup(){
