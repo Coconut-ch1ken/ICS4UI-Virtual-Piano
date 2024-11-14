@@ -1,12 +1,3 @@
-/*
-changed noteNames to noteNames
-added comments
-changed pianoKeys to allAudioFilesOfTheNotes
-changed allAudioFilesOfTheNotes to a 2D array
-changed pianoSong into an arraylist containing note instances
-
-*/
-
 void drawKeys(){
   fill(0);
   textSize(32);
@@ -42,4 +33,15 @@ void loadNotes(){
       allAudioFilesOfTheNotes[i][l] = minim.loadFile(noteNames[l]+ pitches[i] + ".mp3");
     }
   }  
+}
+
+// Creates Note objects and assigns them audio files
+void createNoteObjects() {
+  noteObjects = new Note[noteNames.length][pitches.length];
+  for (int i = 0; i < noteNames.length; i++) {
+    for (int j = 0; j < pitches.length; j++) {
+      // note that the notes objects are created in the order [note][pitch], not in the [pitch][note] order of how they are stored
+      noteObjects[i][j] = new Note(noteNames[i], j, allAudioFilesOfTheNotes[j][i]);
+    }
+  }
 }
