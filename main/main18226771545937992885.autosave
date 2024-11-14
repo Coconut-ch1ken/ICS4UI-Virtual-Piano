@@ -2,27 +2,24 @@ import ddf.minim.*;
 import g4p_controls.*;
 
 Minim minim;
-int pitch;
 
-AudioPlayer[] pianoKeys = new AudioPlayer[8];
-String keyNames[] = {"C","D","E","F","G","A","B","C'"};
+AudioPlayer[] pianoKeys = new AudioPlayer[7];
+String keyNames[] = {"C","D","E","F","G","A","B"};
 
-char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j','k'};
-char pitchdown = '-';
-char pitchup = '=';
-
-boolean[] keyStates = new boolean[8];
-
-int keyPitch[] = {1,2,3,4,5,6,7};
+char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j'};  
+boolean[] keyStates = new boolean[7];
 
 void setup(){
   
+  int octave = 4;
+  
   size(600,600);
   minim = new Minim(this);
-  pitch = 4;
   
-   //  Load piano sound files
-  loadNotes();
+    // Load piano sound files
+  for (int i = 0; i < keyNames.length; i++) {
+    pianoKeys[i] = minim.loadFile(keyNames[i] + ".mp3");
+  }
   
   background(255);
 }
@@ -32,13 +29,10 @@ void draw() {
   fill(0);
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("Press A, S, D, F, G, H, J, K to play piano keys", width / 2, height / 2 - 40);
-  textSize(18);
-  text("Pitch: " + pitch, width / 2, height / 2 - 10);
+  text("Press A, S, D, F, G, H, J to play piano keys", width / 2, height / 2 - 40);
  
   // Draw simple visual representation of keys (like rectangles)
   for (int i = 0; i < keyNames.length; i++) {
-    
     fill(200);
     rect(50 + i * 50, height / 2 + 40, 40, 100);
     fill(0);
@@ -52,23 +46,10 @@ void keyPressed() {
     if (key == keyCodes[i] && !keyStates[i]) {
       pianoKeys[i].rewind();  // Rewind the sound to the start (in case it's already playing)
       pianoKeys[i].play(); 
-      println("I pressed " + keyNames[i] + pitch);// Start playing the sound
+      println("I pressed ",keyNames[i]);// Start playing the sound
       keyStates[i] = true;    // Mark this key as being pressed
     }
   }
-  if (key == pitchdown){
-    pitch--;
-    
-    if (pitch < 1){pitch = 1;}
-    loadNotes();
-  } else
-  if (key == pitchup){
-    pitch++;
-    
-    if (pitch > 7){pitch = 7;}
-    loadNotes();
-  }
-
 }
 
 void keyReleased() {
@@ -91,14 +72,5 @@ void stop() {
 }
   
   
-void loadNotes(){
-  for (int i = 0; i < keyNames.length; i++) {
-    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
-  }  
-  if(pitch != 7){
-    pianoKeys[7] = minim.loadFile("C"+str(pitch+1)+".mp3");
-  }
-  else{pianoKeys[7] = minim.loadFile("C"+str(pitch)+".mp3");}
-}
-
+  
   
