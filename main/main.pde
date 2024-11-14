@@ -98,5 +98,7 @@ void loadNotes(){
   if(pitch != 7){
     pianoKeys[7] = minim.loadFile("C"+str(pitch+1)+".mp3");
   }
+  else{pianoKeys[7] = minim.loadFile("C"+str(pitch)+".mp3");}
 }
+
   
