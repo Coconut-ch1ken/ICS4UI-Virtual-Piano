@@ -4,14 +4,14 @@ import g4p_controls.*;
 Minim minim;
 int pitch;
 
-AudioPlayer[] pianoKeys = new AudioPlayer[7];
-String keyNames[] = {"C","D","E","F","G","A","B"};
+AudioPlayer[] pianoKeys = new AudioPlayer[8];
+String keyNames[] = {"C","D","E","F","G","A","B","C'"};
 
-char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j'};
+char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j','k'};
 char pitchdown = '-';
 char pitchup = '=';
 
-boolean[] keyStates = new boolean[7];
+boolean[] keyStates = new boolean[8];
 
 int keyPitch[] = {1,2,3,4,5,6,7};
 
@@ -22,9 +22,7 @@ void setup(){
   pitch = 4;
   
    //  Load piano sound files
-  for (int i = 0; i < keyNames.length; i++) {
-    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
-  }
+  loadNotes();
   
   background(255);
 }
@@ -62,19 +60,15 @@ void keyPressed() {
     pitch--;
     
     if (pitch < 1){pitch = 1;}
-    for (int i = 0; i < keyNames.length; i++) {
-    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
-    }
+    loadNotes();
   } else
   if (key == pitchup){
     pitch++;
     
     if (pitch > 7){pitch = 7;}
-    for (int i = 0; i < keyNames.length; i++) {
-    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
+    loadNotes();
   }
-  }
-  
+
 }
 
 void keyReleased() {
@@ -97,5 +91,12 @@ void stop() {
 }
   
   
-  
+void loadNotes(){
+  for (int i = 0; i < keyNames.length; i++) {
+    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
+  }  
+  if(pitch != 7){
+    pianoKeys[7] = minim.loadFile("C"+str(pitch+1)+".mp3");
+  }
+}
   
