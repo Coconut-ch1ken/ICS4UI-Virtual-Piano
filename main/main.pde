@@ -46,7 +46,6 @@ void setup(){
 void draw() {
   background(255);
   drawKeys();
-  
   //pianoSong = new AudioPlayer[typedKeys.length];
   //for (int i = 0; i < pianoSong.length; i++){
   //  pianoSong[i] = minim.loadFile(typedKeys[i] + ".mp3");
