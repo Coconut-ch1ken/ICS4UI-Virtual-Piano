@@ -1,41 +1,24 @@
 void keyPressed() {
-  for (int i = 0; i < keyCodes.length; i++) {
-    if (key == keyCodes[i] && !keyStates[i]) {
-      indexOfNoteBeingPlayed = i;
-      
-      // Add the corresponding Note object to `pianoSong`
-      Note noteToPlay = noteObjects[i][pitch-1];
-      pianoSong.add(noteToPlay);
-      keyStates[i] = true;
-
-      // Play the note
-      noteToPlay.play();
+  for (int i = 0; i < keyCodes.length; i++) {     // Detect which key is pressed
+    if (key == keyCodes[i] && !keyStates[i]) {    // If the key is in the keyCode list and the key is not being pressed down already
+      Note noteToPlay = noteObjects[i][pitch-1];  // Project the key to the note that is about to be played
+      keyStates[i] = true;  // Mark the key as pressed
+      noteToPlay.play();    // Play the note
     }
   }
-  
-  if (key == pitchdown) {
-    pitch--;
-    if (pitch < 1){ pitch = 1; }
-  } 
-  else if (key == pitchup) {
-    pitch++;
-    if (pitch > 7){ pitch = 7; }
-  }
-  
-  if (key == playkey) { 
-    playSong();
-  }
-  
-  if (key == resetkey) {
-    resetSong();
-  }
+  // Some other keyboard operations that can be done
+  if (key == pitchdown) { pitch = max(1, pitch-1); }
+  else if (key == pitchup) { pitch = min(7, pitch+1); }
+
+  if (key == playkey) { playSong(); }
+  if (key == resetkey) { resetSong(); }
 }
 
 
 void keyReleased() {
-  for (int i = 0; i < pitches.length; i++) {
-    for (int l = 0; l < keyCodes.length; l++) {
-      if (key == keyCodes[l] && keyStates[l]) {
+  for (int i = 0; i < keyCodes.length; i++) {
+    for (int l = 0; l < pitches.length; l++) {
+      if (key == keyCodes[i] && keyStates[i]) {
         allAudioFilesOfTheNotes[i][l].pause();
         keyStates[i] = false;
       }
@@ -43,17 +26,7 @@ void keyReleased() {
   }
 }
 
-//void stop() {
-//  // Close Minim when the sketch ends
-//  for (int i = 0; i < pianoKeys.length; i++) {
-//    pianoKeys[i].close();
-//  }
-//  for (int i = 0; i < pianoSong.length; i++){
-//    pianoSong[i].close();
-//  }
-//  minim.stop();
-//  super.stop();
-//}
+
 
 // Still working on these
 void playSong() {
@@ -67,7 +40,7 @@ void playSong() {
 }
 
 void resetSong() {
-  if (key == resetkey){//Working on
+  if (key == resetkey) {//Working on
     songstopped = 0;
     typedKeys = new String[0];
     println("reset");

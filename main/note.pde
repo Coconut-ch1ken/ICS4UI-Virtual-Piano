@@ -10,7 +10,7 @@ class Note {
   }
   
   void play() {
-    player.rewind();
-    player.play();
+    this.player.rewind();
+    this.player.play();
   }
 }

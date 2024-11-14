@@ -1,3 +1,18 @@
+void drawKeys(){
+  fill(0);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  text("Press A, S, D, F, G, H, J, K to play piano keys", width / 2, 50);
+  textSize(18);
+  text("Pitch: " + pitch, width / 2, 85);
+  //textSize(12);
+  //text("Pressed Keys: " + join(typedKeys, " "), width/2, height-20);
+  textSize(32);
+  for ( int i = 0; i < keys.length; i++ ) {
+    keys[i].display();
+  }
+}
+
 class Key {
   PVector pos;
   PVector size;
