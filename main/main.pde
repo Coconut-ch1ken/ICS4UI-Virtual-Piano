@@ -11,12 +11,15 @@ AudioPlayer[][] allAudioFilesOfTheNotes = new AudioPlayer[7][8];
 ArrayList<Note> pianoSong = new ArrayList<Note>(); // Dynamic list to store Notes played (in the form of note instances)
 String[] noteNames = {"C","D","E","F","G","A","B","C"};
 int[] pitches = {1, 2, 3, 4, 5, 6, 7};
+Key[] keys = new Key[noteNames.length];
 
+//Keys
 char[] keyCodes = {'a', 's', 'd', 'f', 'g', 'h', 'j','k'};
 char pitchdown = '-';
 char pitchup = '=';
 char playkey = ' ';
 char resetkey = 'r';
+
 
 String[] typedKeys = {};
 int indexOfNoteBeingPlayed;
@@ -40,6 +43,10 @@ void setup(){
   createNoteObjects();
 
   background(255);
+  
+  for ( int i = 0; i < keys.length; i++ ) {
+    keys[i] = new Key( 37.5 + i * 75, 525.0, 75, 150, noteNames[i], color(255, 255, 255) );
+  }
 }
 
 void draw() {

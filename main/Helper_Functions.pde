@@ -11,17 +11,14 @@ void drawKeys(){
   fill(0);
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("Press A, S, D, F, G, H, J, K to play piano keys", width / 2, height / 2 - 40);
+  text("Press A, S, D, F, G, H, J, K to play piano keys", width / 2, 50);
   textSize(18);
-  text("Pitch: " + pitch, width / 2, height / 2 - 10);
-  textSize(12);
-  text("Pressed Keys: " + join(typedKeys, " "), width/2, height-20);
+  text("Pitch: " + pitch, width / 2, 85);
+  //textSize(12);
+  //text("Pressed Keys: " + join(typedKeys, " "), width/2, height-20);
   textSize(32);
-  for (int i = 0; i < noteNames.length; i++) {
-    fill(200);
-    rect(50 + i * 50, height / 2 + 40, 40, 100);
-    fill(0);
-    text(noteNames[i], 50 + i * 50 + 20, height / 2 + 90);
+  for ( int i = 0; i < keys.length; i++ ) {
+    keys[i].display();
   }
 }
 
