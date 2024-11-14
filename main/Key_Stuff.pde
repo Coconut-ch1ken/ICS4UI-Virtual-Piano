@@ -4,7 +4,7 @@ void keyPressed() {
       indexOfNoteBeingPlayed = i;
       
       // Add the corresponding Note object to `pianoSong`
-      Note noteToPlay = noteObjects[i][pitch];
+      Note noteToPlay = noteObjects[i][pitch-1];
       pianoSong.add(noteToPlay);
       keyStates[i] = true;
 
@@ -14,9 +14,12 @@ void keyPressed() {
   }
   
   if (key == pitchdown) {
-    pitch = max(pitch - 1, 0);
-  } else if (key == pitchup) {
-    pitch = min(pitch + 1, pitches.length - 1);
+    pitch--;
+    if (pitch < 1){ pitch = 1; }
+  } 
+  else if (key == pitchup) {
+    pitch++;
+    if (pitch > 7){ pitch = 7; }
   }
   
   if (key == playkey) { 
@@ -52,7 +55,7 @@ void keyReleased() {
 //  super.stop();
 //}
 
-// Still working on it
+// Still working on these
 void playSong() {
   //for (int i = songstopped; i < typedKeys.length; i++){
   //  playing = true;
