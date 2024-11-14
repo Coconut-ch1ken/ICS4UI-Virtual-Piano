@@ -4,7 +4,7 @@ void keyPressed() {
       indexOfNoteBeingPlayed = i;
       
       // Add the corresponding Note object to `pianoSong`
-      Note noteToPlay = noteObjects[i][pitch];
+      Note noteToPlay = noteObjects[i][pitch-1];
       pianoSong.add(noteToPlay);
       keyStates[i] = true;
 
