@@ -21,7 +21,7 @@ void setup(){
   minim = new Minim(this);
   pitch = 4;
   
-    // Load piano sound files
+   //  Load piano sound files
   for (int i = 0; i < keyNames.length; i++) {
     pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
   }
@@ -40,6 +40,7 @@ void draw() {
  
   // Draw simple visual representation of keys (like rectangles)
   for (int i = 0; i < keyNames.length; i++) {
+    
     fill(200);
     rect(50 + i * 50, height / 2 + 40, 40, 100);
     fill(0);
@@ -59,11 +60,19 @@ void keyPressed() {
   }
   if (key == pitchdown){
     pitch--;
-    if (pitch < 0){pitch = 0;}
+    
+    if (pitch < 1){pitch = 1;}
+    for (int i = 0; i < keyNames.length; i++) {
+    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
+    }
   } else
   if (key == pitchup){
     pitch++;
+    
     if (pitch > 7){pitch = 7;}
+    for (int i = 0; i < keyNames.length; i++) {
+    pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
+  }
   }
   
 }
