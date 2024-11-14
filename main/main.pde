@@ -85,6 +85,7 @@ void keyPressed() {
     for (int i = 0; i < keyNames.length; i++) {
       pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
     }
+    loadNotes();
   }
   
   if (key == playkey){ //Working on
@@ -102,7 +103,6 @@ void keyPressed() {
     typedKeys = new String[0];
     println("reset");
   }
-  loadNotes();
 }
 
 void keyReleased() {
@@ -127,7 +127,6 @@ void stop() {
   super.stop();
 }
   
-  
 void loadNotes(){
   for (int i = 0; i < keyNames.length; i++) {
     pianoKeys[i] = minim.loadFile(keyNames[i]+ str(pitch) + ".mp3");
@@ -137,5 +136,3 @@ void loadNotes(){
   }
   else{pianoKeys[7] = minim.loadFile("C"+str(pitch)+".mp3");}
 }
-
-  
