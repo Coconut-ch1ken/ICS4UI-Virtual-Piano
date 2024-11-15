@@ -4,7 +4,9 @@ import g4p_controls.*;
 
 Minim minim = new Minim(this);
 AudioOutput out;
+AudioPlayer output;
 AudioRecorder recorder;
+
 
 // Miscellaneous Variables
 int pitch = 4;
@@ -42,8 +44,8 @@ void setup(){
   background(255);
   initialize();
   out = minim.getLineOut( Minim.STEREO, 2048, 44100 );
-  
-  recorder = minim.createRecorder( out, "output.wav" );
+  output = minim.loadFile( "output1.wav" );
+  recorder = minim.createRecorder( out, "output1.wav" );
   
   recorder.beginRecord();
 }

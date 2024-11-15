@@ -15,7 +15,14 @@ void keyPressed() {
   if (key == playkey) { playSong(); }
   if (key == resetkey) { resetSong(); }
   
-  if (key == 'p') { recorder.endRecord(); }
+  if (key == 'p') { 
+    recorder.endRecord(); 
+    out.close();
+    minim.stop();
+    super.stop();
+  }
+  
+  if (key == '0') { output.play(); }
 }
 
 
