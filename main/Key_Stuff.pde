@@ -21,10 +21,6 @@ void keyPressed() {
   if (key == pitchdown) { pitch = max(1, pitch-1); }
   else if (key == pitchup) { pitch = min(7, pitch+1); }
 
-<<<<<<< HEAD
-  //if (key == playkey) { playSong(); }
-  //if (key == resetkey) { resetSong(); }
-=======
   if (key == playkey) { playSong(); }
   if (key == resetkey) { resetSong(); }
   
@@ -36,12 +32,7 @@ void keyPressed() {
   }
   
   if (key == '0') { output.play(); }
-<<<<<<< HEAD
->>>>>>> 8022affea2bbecd120679ad16c97d00a0ea6b654
-=======
->>>>>>> 8022affea2bbecd120679ad16c97d00a0ea6b654
 }
-
 
 void keyReleased() {
   for (int i = 0; i < keyCodes.length; i++) {
