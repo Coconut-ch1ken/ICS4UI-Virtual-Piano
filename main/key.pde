@@ -11,6 +11,9 @@ void drawKeys(){
   for ( int i = 0; i < keys.length; i++ ) {
     keys[i].display();
   }
+  for ( int i = 0; i < keys2.length; i++ ) {
+    keys2[i].display();
+  }
 }
 
 class Key {
@@ -18,13 +21,15 @@ class Key {
   PVector size;
   String note;
   color colour;
+  color text_colour;
   boolean pressed;
   
-  Key(float x, float y, float h, float v, String n, color c){
+  Key(float x, float y, float h, float v, String n, color c, color t){
     this.pos = new PVector(x, y);
     this.size = new PVector(h, v);
     this.note = n;
     this.colour = c;
+    this.text_colour = t;
     this.pressed = false;
   }
   
@@ -32,10 +37,10 @@ class Key {
      fill(this.colour);
      stroke(0);
      strokeWeight(2);
-     rect(this.pos.x - this.size.x/2, this.pos.y - this.size.y/2, this.pos.x + this.size.x/2, this.pos.y + this.size.y/2);
-     //println(this.pos.x + this.size.x/2, this.pos.y + this.size.y/2, this.pos.x - this.size.x/2, this.pos.y - this.size.y/2);
+     rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
      noStroke();
-     fill(0);
-     text(this.note, this.pos.x, this.pos.y);
+     textSize(18);
+     fill(this.text_colour);
+     text(this.note, this.pos.x + this.size.x/2, this.pos.y + this.size.y/2);
    }
 }
