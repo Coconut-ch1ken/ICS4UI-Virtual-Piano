@@ -1,7 +1,12 @@
 import ddf.minim.*;
+import ddf.minim.ugens.*;
 import g4p_controls.*;
 
 Minim minim = new Minim(this);
+AudioOutput out;
+AudioRecorder recorder;
+
+// Miscellaneous Variables
 int pitch = 4;
 int songstopped = 0;
 
@@ -36,6 +41,11 @@ void setup(){
   size(600,600);
   background(255);
   initialize();
+  out = minim.getLineOut( Minim.STEREO, 2048, 44100 );
+  
+  recorder = minim.createRecorder( out, "output.wav" );
+  
+  recorder.beginRecord();
 }
 
 void draw() {

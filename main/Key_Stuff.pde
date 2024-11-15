@@ -14,6 +14,8 @@ void keyPressed() {
 
   if (key == playkey) { playSong(); }
   if (key == resetkey) { resetSong(); }
+  
+  if (key == 'p') { recorder.endRecord(); }
 }
 
 
