@@ -41,4 +41,8 @@ void setup(){
 void draw() {
   background(255);
   drawKeys();
+  delay(100);
+  for (int i = 0; i < keys.length; i++) { // Detect which key is pressed
+    keys[i].colour = color(255);
+  }
 }

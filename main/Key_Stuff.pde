@@ -2,6 +2,7 @@ void keyPressed() {
   for (int i = 0; i < keyCodes.length; i++) {     // Detect which key is pressed
     if (key == keyCodes[i] && !keyStates[i]) {    // If the key is in the keyCode list and the key is not being pressed down already
       Note noteToPlay = noteObjects[i][pitch-1];  // Project the key to the note that is about to be played
+      keys[i].colour = color(211, 211,211);
       keyStates[i] = true;  // Mark the key as pressed
       noteToPlay.play();    // Play the note
     }
