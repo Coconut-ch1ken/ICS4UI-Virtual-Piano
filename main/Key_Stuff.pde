@@ -21,17 +21,18 @@ void keyPressed() {
   if (key == pitchdown) { pitch = max(1, pitch-1); }
   else if (key == pitchup) { pitch = min(7, pitch+1); }
 
-  if (key == playkey) { playSong(); }
-  if (key == resetkey) { resetSong(); }
+  //if (key == playkey) { playSong(); }
+  //if (key == resetkey) { resetSong(); }
   
   if (key == 'p') { 
     recorder.endRecord(); 
-    out.close();
+    recorder.save();
+    
     minim.stop();
     super.stop();
   }
   
-  if (key == '0') { output.play(); }
+
 }
 
 void keyReleased() {
