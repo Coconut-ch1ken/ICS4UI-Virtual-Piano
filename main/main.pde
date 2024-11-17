@@ -38,7 +38,7 @@ void setup() {
 
   // Initialize the piano system
   initialize();
-  println("please work");
+  println("please work2");
 }
 //adding a line?
 void draw() {
