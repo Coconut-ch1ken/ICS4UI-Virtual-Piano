@@ -38,10 +38,9 @@ void setup() {
 
   // Initialize the piano system
   initialize();
-
-  println("Press 'r' to start recording, 'p' to stop and save, and 't' to play a test note.");
+  println("please work");
 }
-
+//adding a line?
 void draw() {
   recorder.beginRecord();
   background(255);
