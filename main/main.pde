@@ -1,5 +1,10 @@
 import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
+
 import g4p_controls.*;
 
 // Global Variables
@@ -14,6 +19,7 @@ String[] noteNames = {"C", "D", "E", "F", "G", "A", "B", "C"};
 String[] noteNames2 = {"Db", "Eb", "Gb", "Ab", "Bb"};
 int[] pitches = {1, 2, 3, 4, 5, 6, 7};
 int pitch = 4;
+float volume = 0;
 
 Key[] keys = new Key[noteNames.length];
 Key[] keys2 = new Key[noteNames2.length];
@@ -38,11 +44,11 @@ void setup() {
 
   // Initialize the piano system
   initialize();
-  println("please work2");
+  createGUI();
 }
-//adding a line?
+
 void draw() {
-  recorder.beginRecord();
+  
   background(255);
   drawKeys();
 
