@@ -11,6 +11,7 @@ AudioRecorder recorder;
 // Miscellaneous Variables
 int pitch = 4;
 int songstopped = 0;
+float volume = 0;
 
 // Constants that helps the program to load the mp3 files
 String[] noteNames = {"C","D","E","F","G","A","B","C"};
@@ -53,6 +54,7 @@ void setup(){
   recorder = minim.createRecorder( out, "output1.wav" );
   
   recorder.beginRecord();
+  createGUI();
 }
 
 void draw() {
