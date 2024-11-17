@@ -1,35 +1,39 @@
-void loadAudioFileOfNotes(){
+void initialize() {
+  loadAudioFiles();
+  createNoteObjects();
+  initializeKeys();
+}
+
+// Load audio files into FilePlayer objects
+void loadAudioFiles() {
+  allAudioFilesOfTheNotes = new FilePlayer[noteNames.length][pitches.length];
+  allAudioFilesOfTheNotesTwo = new FilePlayer[noteNames2.length][pitches.length];
+
   for (int i = 0; i < noteNames.length; i++) {
-    for (int l = 0; l < pitches.length; l++) {
-      // if we are loading the C from the next octave
-      if ( i == 7 ){
-        println("Loading file: " + noteNames[i] + int(pitches[l]+1) + ".mp3");
-        allAudioFilesOfTheNotes[i][l] = minim.loadFile(noteNames[i]+ int(pitches[l]+1) + ".mp3");
-      }
-      
-      else{
-        println("Loading file: " + noteNames[i] + pitches[l] + ".mp3");
-        allAudioFilesOfTheNotes[i][l] = minim.loadFile(noteNames[i]+ pitches[l] + ".mp3");
-      }
+    for (int j = 0; j < pitches.length; j++) {
+      String fileName = noteNames[i] + pitches[j] + ".mp3";
+      allAudioFilesOfTheNotes[i][j] = new FilePlayer(minim.loadFileStream(fileName));
+      allAudioFilesOfTheNotes[i][j].patch(out); // Patch to audio output
     }
   }
+
   for (int i = 0; i < noteNames2.length; i++) {
-    for (int l = 0; l < pitches.length; l++) {
-      println("Loading file: " + noteNames2[i] + pitches[l] + ".mp3");
-      allAudioFilesOfTheNotesTwo[i][l] = minim.loadFile(noteNames2[i]+ pitches[l] + ".mp3");
+    for (int j = 0; j < pitches.length; j++) {
+      String fileName = noteNames2[i] + pitches[j] + ".mp3";
+      allAudioFilesOfTheNotesTwo[i][j] = new FilePlayer(minim.loadFileStream(fileName));
+      allAudioFilesOfTheNotesTwo[i][j].patch(out); // Patch to audio output
     }
   }
 }
 
-// Creates Note objects and assigns them audio files
+// Create Note objects with corresponding FilePlayer
 void createNoteObjects() {
   for (int i = 0; i < noteNames.length; i++) {
     for (int j = 0; j < pitches.length; j++) {
-      // note that the notes objects are created and stored in the order [note][pitch]
-      // In other words, noteObjects are in the form: C5
       noteObjects[i][j] = new Note(noteNames[i], j, allAudioFilesOfTheNotes[i][j]);
     }
   }
+
   for (int i = 0; i < noteNames2.length; i++) {
     for (int j = 0; j < pitches.length; j++) {
       noteObjects2[i][j] = new Note(noteNames2[i], j, allAudioFilesOfTheNotesTwo[i][j]);
@@ -37,13 +41,9 @@ void createNoteObjects() {
   }
 }
 
-void initialize(){
- // Initialize notes and audio files
-  loadAudioFileOfNotes();
-  // Create Note objects
-  createNoteObjects();
-  // Initialize the keys list by filling it in with key instances
-  for ( int i = 0; i < keys.length; i++ ) {
+void initializeKeys(){
+  
+   for ( int i = 0; i < keys.length; i++ ) {
     keys[i] = new Key( i * 75, 450, 75, 150, noteNames[i], color(255), color(0) );
   }
   for ( int i = 0; i < keys2.length; i++ ) {

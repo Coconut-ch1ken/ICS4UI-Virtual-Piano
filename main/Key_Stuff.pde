@@ -26,12 +26,13 @@ void keyPressed() {
   
   if (key == 'p') { 
     recorder.endRecord(); 
-    out.close();
+    recorder.save();
+    
     minim.stop();
     super.stop();
   }
   
-  if (key == '0') { output.play(); }
+
 }
 
 void keyReleased() {
