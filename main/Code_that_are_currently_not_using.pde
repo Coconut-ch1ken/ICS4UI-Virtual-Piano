@@ -33,5 +33,24 @@ These are previously in the draw function:
 These are in keyPressed()
   // Add the corresponding Note object to `pianoSong`
   //pianoSong.add(noteToPlay);
+  
+// Still working on these
+//void playSong() {
+  //for (int i = songstopped; i < typedKeys.length; i++){
+  //  playing = true;
+  //  pianoSong[i].unmute();
+  //  pianoSong[i].play();
+  //  delay(1000);
+  //songstopped = 0;
+  //}
+//}
+
+//void resetSong() {
+//  if (key == resetkey) {//Working on
+//    songstopped = 0;
+//    typedKeys = new String[0];
+//    println("reset");
+//  }
+//}
 
 */

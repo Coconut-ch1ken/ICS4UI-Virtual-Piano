@@ -42,7 +42,6 @@ void createNoteObjects() {
 }
 
 void initializeKeys(){
-  
    for ( int i = 0; i < keys.length; i++ ) {
     keys[i] = new Key( i * 75, 450, 75, 150, noteNames[i], color(255), color(0) );
   }
@@ -54,4 +53,12 @@ void initializeKeys(){
       keys2[i] = new Key(  60 + (i+1) * 75, 450, 30, 75, noteNames2[i], color(0), color(255) );
     }
   }
+}
+
+void stopRecording(){
+  recorder.endRecord(); 
+    recorder.save();
+    
+    minim.stop();
+    super.stop();
 }

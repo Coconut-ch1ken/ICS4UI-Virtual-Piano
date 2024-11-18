@@ -12,7 +12,7 @@ class Note {
   
   void play() {
     this.player.rewind();
-    
+    //this.player.setGain(volume);
     this.player.play();
   }
 }

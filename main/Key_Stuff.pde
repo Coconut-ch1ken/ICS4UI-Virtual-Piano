@@ -20,19 +20,7 @@ void keyPressed() {
   // Some other keyboard operations that can be done
   if (key == pitchdown) { pitch = max(1, pitch-1); }
   else if (key == pitchup) { pitch = min(7, pitch+1); }
-
-  //if (key == playkey) { playSong(); }
-  //if (key == resetkey) { resetSong(); }
-  
-  if (key == 'p') { 
-    recorder.endRecord(); 
-    recorder.save();
-    
-    minim.stop();
-    super.stop();
-  }
-  
-
+  if (key == recordKey) { stopRecording(); } 
 }
 
 void keyReleased() {
@@ -55,22 +43,3 @@ void keyReleased() {
     }
   }
 }
-
-// Still working on these
-//void playSong() {
-  //for (int i = songstopped; i < typedKeys.length; i++){
-  //  playing = true;
-  //  pianoSong[i].unmute();
-  //  pianoSong[i].play();
-  //  delay(1000);
-  //songstopped = 0;
-  //}
-//}
-
-//void resetSong() {
-//  if (key == resetkey) {//Working on
-//    songstopped = 0;
-//    typedKeys = new String[0];
-//    println("reset");
-//  }
-//}
