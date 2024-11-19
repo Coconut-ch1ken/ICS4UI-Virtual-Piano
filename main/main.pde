@@ -10,6 +10,12 @@ AudioRecorder recorder;
 FilePlayer[][] allAudioFilesOfTheNotes;
 FilePlayer[][] allAudioFilesOfTheNotesTwo;
 
+
+AudioPlayer metronome;
+AudioPlayer metronomeFourTick;
+
+
+
 // Piano Key and Note System
 String[] noteNames = {"C", "D", "E", "F", "G", "A", "B", "C"};
 String[] noteNames2 = {"Db", "Eb", "Gb", "Ab", "Bb"};
@@ -38,6 +44,13 @@ char recordKey = 'p';
 
 String recordingName = "piano_recording";
 
+
+// Metronome variables
+boolean metronomeOn = true;
+int bpm = 240 ; // beats per minute
+int metronomeInterval;
+long lastMetronomeTick = 0;
+
 void setup() {
   size(600, 600);
   minim = new Minim(this);
@@ -45,7 +58,9 @@ void setup() {
   // Set up audio output and recorder
   out = minim.getLineOut(Minim.STEREO, 2048, 44100);
   recorder = minim.createRecorder(out, recordingName + ".wav");
-
+  metronome = minim.loadFile("metronome.mp3");
+  //metronomeFourTick = minim.loadFile("metronome-4-tick.mp3");
+  
   // Initialize the piano system
   initialize();
   createGUI();
@@ -55,4 +70,17 @@ void draw() {
   if ( startRecording == true ){ recorder.beginRecord(); }
   background(255);
   drawKeys();
+
+  // Metronome functionality
+  if (metronomeOn) {
+    long currentNanoTime = System.nanoTime(); // Get the current time in nanoseconds
+    
+    // Calculate the time difference in nanoseconds
+    if (currentNanoTime - lastMetronomeTick >= (60.0 / bpm) * 1000000000) {
+      println("hi");
+      metronome.rewind();
+      metronome.play();
+      lastMetronomeTick = currentNanoTime;
+    }
+  }
 }

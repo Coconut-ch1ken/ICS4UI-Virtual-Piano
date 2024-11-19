@@ -62,3 +62,9 @@ void stopRecording(){
     minim.stop();
     super.stop();
 }
+
+//void playFourTickMetronome(){
+//  metronomeFourTick.rewind();
+//  metronomeFourTick.setPlaybackRate(4);
+//  metronomeFourTick.play();
+//}
