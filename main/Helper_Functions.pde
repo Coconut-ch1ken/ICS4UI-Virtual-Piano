@@ -56,7 +56,10 @@ void initializeKeys(){
 }
 
 void stopRecording(){
-  recorder.endRecord(); 
+    fill(0); 
+    textSize(20); 
+    text("Saved as a piano_recording.wav", width/2, height/2); 
+    recorder.endRecord(); 
     recorder.save();
     
     minim.stop();
