@@ -19,6 +19,9 @@ int[] pitches = {1, 2, 3, 4, 5, 6, 7};
 Key[] keys = new Key[noteNames.length];
 Key[] keys2 = new Key[noteNames2.length];
 
+String[] notes = {};
+String[] reverseNotes = {};
+
 // 2D arrays used to store note objects
 Note[][] noteObjects = new Note[noteNames.length][pitches.length];
 Note[][] noteObjects2 = new Note[noteNames2.length][pitches.length];
@@ -54,5 +57,5 @@ void setup() {
 void draw() {
   if ( startRecording == true ){ recorder.beginRecord(); }
   background(255);
-  drawKeys();
+  drawKeys();  
 }
