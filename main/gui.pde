@@ -35,19 +35,21 @@ public void changeVolumn(GSlider source, GEvent event) { //_CODE_:vol:770976:
 } //_CODE_:vol:770976:
 
 public void recordButton_click(GButton source, GEvent event) { //_CODE_:button1:305416:
-  recorder.beginRecord();
+  startRecording = true;
+  //recorder.beginRecord();
 } //_CODE_:button1:305416:
 
 public void stopRecordButton_click(GButton source, GEvent event) { //_CODE_:button2:509840:
     recorder.endRecord(); 
     recorder.save();
     startRecording = false;
-    minim.stop();
-    super.stop();
+    recorderCount = 0;
+    
+
 } //_CODE_:button2:509840:
 
 public void changeSongName(GTextField source, GEvent event) { //_CODE_:songName:567599:
-  String songName = source.getText();
+  recordingName = source.getText();
 } //_CODE_:songName:567599:
 
 

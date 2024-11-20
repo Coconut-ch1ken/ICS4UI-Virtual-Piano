@@ -48,19 +48,22 @@ String recordingName = "piano_recording";
 
 
 // Metronome variables
-boolean metronomeOn = false;
+boolean metronomeOn = true;
 int bpm = 240 ; // beats per minute
 int metronomeInterval;
 long lastMetronomeTick = 0;
+
+int recorderCount = 0;
 
 void setup() {
   size(600, 600);
   minim = new Minim(this);
 
   // Set up audio output and recorder
-  out = minim.getLineOut(Minim.STEREO, 2048, 44100);
-  recorder = minim.createRecorder(out, recordingName + ".wav");
+  out = minim.getLineOut(Minim.STEREO, 4096, 44100);
+  //recorder = minim.createRecorder(out, recordingName + ".wav");
   metronome = minim.loadFile("metronome.mp3");
+  
   //metronomeFourTick = minim.loadFile("metronome-4-tick.mp3");
   
   // Initialize the piano system
@@ -69,7 +72,15 @@ void setup() {
 }
 
 void draw() {
-  if ( startRecording == true ){ recorder.beginRecord(); }
+  if ( startRecording == true ){ 
+  
+  if(recorderCount <= 1){
+  initializeRecorder();
+  recorderCount += 1;
+    }
+  }
+   
+  
   background(255);
 
   drawKeys();  
@@ -81,11 +92,22 @@ void draw() {
     
     // Calculate the time difference in nanoseconds
     if (currentNanoTime - lastMetronomeTick >= (60.0 / bpm) * 1000000000) {
-      //println("hi");
       metronome.rewind();
       metronome.play();
       lastMetronomeTick = currentNanoTime;
     }
   }
 //ADDING A COMMENT
+}
+
+void stop(){ //function to ensure program closes properly
+     minim.stop();
+    super.stop(); 
+}
+
+void initializeRecorder(){
+
+    recorder = minim.createRecorder(out, recordingName + ".wav");
+    recorder.beginRecord();
+    
 }
