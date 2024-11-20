@@ -46,6 +46,10 @@ public void stopRecordButton_click(GButton source, GEvent event) { //_CODE_:butt
     super.stop();
 } //_CODE_:button2:509840:
 
+public void changeSongName(GTextField source, GEvent event) { //_CODE_:songName:567599:
+  String songName = source.getText();
+} //_CODE_:songName:567599:
+
 
 
 // Create all the GUI controls. 
@@ -81,6 +85,9 @@ public void createGUI(){
   button2 = new GButton(window1, 10, 169, 80, 30);
   button2.setText("Stop Recording");
   button2.addEventHandler(this, "stopRecordButton_click");
+  songName = new GTextField(window1, 60, 45, 120, 30, G4P.SCROLLBARS_NONE);
+  songName.setOpaque(true);
+  songName.addEventHandler(this, "changeSongName");
   window1.loop();
 }
 
@@ -94,3 +101,4 @@ GSlider vol;
 GLabel label1; 
 GButton button1; 
 GButton button2; 
+GTextField songName; 

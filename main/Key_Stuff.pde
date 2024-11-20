@@ -6,9 +6,16 @@ void keyPressed() {
       noteToPlay.play();    // Play the note
       keys[i].colour = color(211);
       
-      if ( i == 7 ){ pitch ++; }
+      if ( i == 7 ){ 
+        pitch ++; 
+        notes = append(notes, noteNames[i] + pitch);
+        pitch --;
+      }
       
-      notes = append(notes, noteNames[i] + pitch);
+      else{
+        notes = append(notes, noteNames[i] + pitch);
+      }
+      
       if (notes.length >= 15){
         reverseNotes = new String[notes.length];
         for (int j = 0; j < notes.length; j++) {

@@ -49,7 +49,7 @@ String recordingName = "piano_recording";
 
 
 // Metronome variables
-boolean metronomeOn = true;
+boolean metronomeOn = false;
 int bpm = 240 ; // beats per minute
 int metronomeInterval;
 long lastMetronomeTick = 0;
