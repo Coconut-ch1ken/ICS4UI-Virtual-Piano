@@ -31,7 +31,7 @@ public void pitchUpButton_click(GButton source, GEvent event) { //_CODE_:pitchUp
 } //_CODE_:pitchUpButton:215784:
 
 public void changeVolumn(GSlider source, GEvent event) { //_CODE_:vol:770976:
-  volume = vol.getValueF();
+  //bpm = 10*(vol.getValueI()+1);
 } //_CODE_:vol:770976:
 
 public void recordButton_click(GButton source, GEvent event) { //_CODE_:button1:305416:
@@ -73,7 +73,7 @@ public void createGUI(){
   vol.addEventHandler(this, "changeVolumn");
   label1 = new GLabel(window1, 13, 14, 89, 20);
   label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label1.setText("Volume Slider");
+  label1.setText("BPM Slider");
   label1.setOpaque(false);
   button1 = new GButton(window1, 10, 130, 80, 30);
   button1.setText("Record");

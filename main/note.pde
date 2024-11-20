@@ -14,5 +14,8 @@ class Note {
     this.player.rewind();
     //this.player.setGain(volume);
     this.player.play();
+    
+    
+  
   }
 }
