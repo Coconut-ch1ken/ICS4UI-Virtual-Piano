@@ -81,7 +81,7 @@ void draw() {
     
     // Calculate the time difference in nanoseconds
     if (currentNanoTime - lastMetronomeTick >= (60.0 / bpm) * 1000000000) {
-      println("hi");
+      //println("hi");
       metronome.rewind();
       metronome.play();
       lastMetronomeTick = currentNanoTime;

@@ -5,10 +5,10 @@ void keyPressed() {
       keyStates[i] = true;  // Mark the key as pressed
       noteToPlay.play();    // Play the note
       keys[i].colour = color(211);
+     
+      if ( i == 7 ){ notes = append(notes, noteNames[i] + (pitch + 1)); }
+      else {notes = append(notes, noteNames[i] + pitch); }
       
-      if ( i == 7 ){ pitch ++; }
-      
-      notes = append(notes, noteNames[i] + pitch);
       if (notes.length > 15){
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
@@ -26,6 +26,7 @@ void keyPressed() {
       Note noteToPlay2 = noteObjects2[i][pitch-1];  // Project the key to the note that is about to be played
       keyStates2[i] = true;  // Mark the key as pressed
       noteToPlay2.play();    // Play the note
+      keys[i].colour = color(211);
       notes = append(notes, noteNames2[i] + pitch);
       if (notes.length > 15){
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
