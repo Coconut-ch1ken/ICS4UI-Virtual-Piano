@@ -9,16 +9,15 @@ void keyPressed() {
       if ( i == 7 ){ pitch ++; }
       
       notes = append(notes, noteNames[i] + pitch);
-      if (notes.length >= 15){
-        reverseNotes = new String[notes.length];
-        for (int j = 0; j < notes.length; j++) {
-          reverseNotes[j] = notes[notes.length - 1 - j];
-        }
-        reverseNotes = shorten(reverseNotes);
-        notes = new String[reverseNotes.length];
-        for (int j = 0; j < reverseNotes.length; j++) {
-          notes[j] = reverseNotes[reverseNotes.length - 1 - j];
-        }
+      if (notes.length > 15){
+        reverseNotes = new ArrayList<String>(Arrays.asList(notes));
+        Collections.reverse(reverseNotes);
+        notes = shorten(reverseNotes.toArray(new String[0]));
+        reverseNotes = new ArrayList<String>(Arrays.asList(notes));
+        Collections.reverse(reverseNotes);
+        notes = reverseNotes.toArray(new String[0]);
+        //println("Normal: ", join(notes, " "));
+        //println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
       }
     }
   }
@@ -28,16 +27,15 @@ void keyPressed() {
       keyStates2[i] = true;  // Mark the key as pressed
       noteToPlay2.play();    // Play the note
       notes = append(notes, noteNames2[i] + pitch);
-      if (notes.length >= 15){
-        reverseNotes = new String[notes.length];
-        for (int j = 0; j < notes.length; j++) {
-          reverseNotes[j] = notes[notes.length - 1 - j];
-        }
-        reverseNotes = shorten(reverseNotes);
-        notes = new String[reverseNotes.length];
-        for (int j = 0; j < reverseNotes.length; j++) {
-          notes[j] = reverseNotes[reverseNotes.length - 1 - j];
-        }
+      if (notes.length > 15){
+        reverseNotes = new ArrayList<String>(Arrays.asList(notes));
+        Collections.reverse(reverseNotes);
+        notes = shorten(reverseNotes.toArray(new String[0]));
+        reverseNotes = new ArrayList<String>(Arrays.asList(notes));
+        Collections.reverse(reverseNotes);
+        notes = reverseNotes.toArray(new String[0]);
+        //println("Normal: ", join(notes, " "));
+        //println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
       }
     }
   }

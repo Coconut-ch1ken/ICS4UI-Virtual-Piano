@@ -2,6 +2,7 @@
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 import g4p_controls.*;
+import java.util.*;
 
 // Minim initialization
 Minim minim;
@@ -14,8 +15,6 @@ FilePlayer[][] allAudioFilesOfTheNotesTwo;
 AudioPlayer metronome;
 AudioPlayer metronomeFourTick;
 
-
-
 // Piano Key and Note System
 String[] noteNames = {"C", "D", "E", "F", "G", "A", "B", "C"};
 String[] noteNames2 = {"Db", "Eb", "Gb", "Ab", "Bb"};
@@ -26,7 +25,7 @@ Key[] keys = new Key[noteNames.length];
 Key[] keys2 = new Key[noteNames2.length];
 
 String[] notes = {};
-String[] reverseNotes = {};
+ArrayList<String> reverseNotes = new ArrayList<String>(Arrays.asList(notes));
 
 // 2D arrays used to store note objects
 Note[][] noteObjects = new Note[noteNames.length][pitches.length];
