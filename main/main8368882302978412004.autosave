@@ -1,8 +1,8 @@
 //imports
 import ddf.minim.*;
 import ddf.minim.ugens.*;
-import g4p_controls.*;
 import java.util.*;
+import g4p_controls.*;
 
 // Minim initialization
 Minim minim;
@@ -11,7 +11,7 @@ AudioRecorder recorder;
 FilePlayer[][] allAudioFilesOfTheNotes;
 FilePlayer[][] allAudioFilesOfTheNotesTwo;
 
-
+//Metronome
 AudioPlayer metronome;
 AudioPlayer metronomeFourTick;
 
@@ -24,7 +24,9 @@ int[] pitches = {1, 2, 3, 4, 5, 6, 7};
 Key[] keys = new Key[noteNames.length];
 Key[] keys2 = new Key[noteNames2.length];
 
+// Notes
 String[] notes = {};
+//String[] reverseNotes = {};
 ArrayList<String> reverseNotes = new ArrayList<String>(Arrays.asList(notes));
 
 // 2D arrays used to store note objects
@@ -48,7 +50,7 @@ String recordingName = "piano_recording";
 
 
 // Metronome variables
-boolean metronomeOn = false;
+boolean metronomeOn = true;
 int bpm = 240 ; // beats per minute
 int metronomeInterval;
 long lastMetronomeTick = 0;
@@ -71,9 +73,7 @@ void setup() {
 void draw() {
   if ( startRecording == true ){ recorder.beginRecord(); }
   background(255);
-
   drawKeys();  
-
 
   // Metronome functionality
   if (metronomeOn) {
@@ -87,5 +87,4 @@ void draw() {
       lastMetronomeTick = currentNanoTime;
     }
   }
-//ADDING A COMMENT
 }

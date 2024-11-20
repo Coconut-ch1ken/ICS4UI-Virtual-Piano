@@ -5,10 +5,7 @@ void keyPressed() {
       keyStates[i] = true;  // Mark the key as pressed
       noteToPlay.play();    // Play the note
       keys[i].colour = color(211);
-     
-      if ( i == 7 ){ notes = append(notes, noteNames[i] + (pitch + 1)); }
-      else {notes = append(notes, noteNames[i] + pitch); }
-      
+      notes = append(notes, noteNames[i] + pitch);
       if (notes.length > 15){
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
@@ -16,8 +13,8 @@ void keyPressed() {
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
         notes = reverseNotes.toArray(new String[0]);
-        //println("Normal: ", join(notes, " "));
-        //println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
+        println("Normal: ", join(notes, " "));
+        println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
       }
     }
   }
@@ -35,8 +32,8 @@ void keyPressed() {
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
         notes = reverseNotes.toArray(new String[0]);
-        //println("Normal: ", join(notes, " "));
-        //println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
+        println("Normal: ", join(notes, " "));
+        println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
       }
     }
   }
