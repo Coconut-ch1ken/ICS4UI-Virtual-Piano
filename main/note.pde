@@ -7,15 +7,11 @@ class Note {
     this.note = n;
     this.pitch = p;
     this.player = fp;
-    
   }
   
   void play() {
     this.player.rewind();
     //this.player.setGain(volume);
     this.player.play();
-    
-    
-  
   }
 }

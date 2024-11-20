@@ -1,12 +1,11 @@
 void drawKeys(){
   fill(0);
-  textSize(32);
+  textSize(24);
   textAlign(CENTER, CENTER);
-  text("Press A, S, D, F, G, H, J, K to play piano keys", width / 2, 50);
-  textSize(18);
-  text("Pitch: " + pitch, width / 2, 85);
-  //textSize(12);
-  //text("Pressed Keys: " + join(typedKeys, " "), width/2, height-20);
+  text("Press A, S, D, F, G, H, J, K to play white keys", width / 2, 20);
+  text("Press W, E, T, Y, U to play black keys", width / 2, 50);
+  textSize(16);
+  text("Pitch: " + pitch + "         Metronome BPM: " + bpm, width / 2, 80 );
   textSize(32);
   for ( int i = 0; i < keys.length; i++ ) {
     keys[i].display();
@@ -15,10 +14,10 @@ void drawKeys(){
     keys2[i].display();
   }
   fill(150);
-  rect(0, 420, width, 30);
+  rect(0, 120, width, 30);
   fill(255);
   textSize(20);
-  text(join(notes, " "), 300, 435);
+  text(join(notes, " "), 300, 135);
 }
 
 class Key {

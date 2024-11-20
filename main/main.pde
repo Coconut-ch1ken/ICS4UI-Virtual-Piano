@@ -46,9 +46,8 @@ char recordKey = 'p';
 
 String recordingName = "piano_recording";
 
-
 // Metronome variables
-boolean metronomeOn = true;
+boolean metronomeOn = false;
 int bpm = 240 ; // beats per minute
 int metronomeInterval;
 long lastMetronomeTick = 0;
@@ -56,7 +55,7 @@ long lastMetronomeTick = 0;
 int recorderCount = 0;
 
 void setup() {
-  size(600, 600);
+  size(600, 300);
   minim = new Minim(this);
 
   // Set up audio output and recorder
@@ -65,7 +64,7 @@ void setup() {
   metronome = minim.loadFile("metronome.mp3");
   
   //metronomeFourTick = minim.loadFile("metronome-4-tick.mp3");
-  
+
   // Initialize the piano system
   initialize();
   createGUI();
