@@ -72,10 +72,9 @@ void setup() {
 void draw() {
   if ( startRecording == true ){ recorder.beginRecord(); }
   background(255);
-<<<<<<< HEAD
+
   drawKeys();  
-=======
-  drawKeys();
+
 
   // Metronome functionality
   if (metronomeOn) {
@@ -89,5 +88,5 @@ void draw() {
       lastMetronomeTick = currentNanoTime;
     }
   }
->>>>>>> 12e6b6f2bf86681f39de7188ba8cc86aa6517ddc
+//ADDING A COMMENT
 }
