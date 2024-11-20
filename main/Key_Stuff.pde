@@ -26,7 +26,7 @@ void keyPressed() {
       Note noteToPlay2 = noteObjects2[i][pitch-1];  // Project the key to the note that is about to be played
       keyStates2[i] = true;  // Mark the key as pressed
       noteToPlay2.play();    // Play the note
-      keys[i].colour = color(211);
+      keys2[i].colour = color(211);
       notes = append(notes, noteNames2[i] + pitch);
       if (notes.length > 15){
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
