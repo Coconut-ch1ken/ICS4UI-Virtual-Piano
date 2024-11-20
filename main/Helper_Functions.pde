@@ -8,18 +8,21 @@ void initialize() {
 void loadAudioFiles() {
   allAudioFilesOfTheNotes = new FilePlayer[noteNames.length][pitches.length];
   allAudioFilesOfTheNotesTwo = new FilePlayer[noteNames2.length][pitches.length];
-
+  String fileName;
   for (int i = 0; i < noteNames.length; i++) {
     for (int j = 0; j < pitches.length; j++) {
-      String fileName = noteNames[i] + pitches[j] + ".mp3";
+      if ( i == 7 ){ fileName = noteNames[i] + int(pitches[j]+1) + ".mp3"; }
+      else { fileName = noteNames[i] + pitches[j] + ".mp3"; }
+      
       allAudioFilesOfTheNotes[i][j] = new FilePlayer(minim.loadFileStream(fileName));
       allAudioFilesOfTheNotes[i][j].patch(out); // Patch to audio output
     }
   }
 
+
   for (int i = 0; i < noteNames2.length; i++) {
     for (int j = 0; j < pitches.length; j++) {
-      String fileName = noteNames2[i] + pitches[j] + ".mp3";
+      fileName = noteNames2[i] + pitches[j] + ".mp3";
       allAudioFilesOfTheNotesTwo[i][j] = new FilePlayer(minim.loadFileStream(fileName));
       allAudioFilesOfTheNotesTwo[i][j].patch(out); // Patch to audio output
     }
