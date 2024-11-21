@@ -1,6 +1,13 @@
 void initialize() {
+  
+  createGUI();
   loadAudioFiles();
   createNoteObjects();
+  
+  // Initialize key widths based on screen size
+  whiteKeyWidth = width / 8.0; // Total 8 white keys
+  blackKeyWidth = whiteKeyWidth * 0.4; // Black keys are 40% of white keys
+  
   initializeKeys();
 }
 
@@ -28,35 +35,6 @@ void loadAudioFiles() {
   }
 }
 
-// Create Note objects with corresponding FilePlayer
-void createNoteObjects() {
-  for (int i = 0; i < noteNames.length; i++) {
-    for (int j = 0; j < pitches.length; j++) {
-      noteObjects[i][j] = new Note(noteNames[i], j, allAudioFilesOfTheNotes[i][j]);
-    }
-  }
-
-  for (int i = 0; i < noteNames2.length; i++) {
-    for (int j = 0; j < pitches.length; j++) {
-      noteObjects2[i][j] = new Note(noteNames2[i], j, allAudioFilesOfTheNotesTwo[i][j]);
-    }
-  }
-}
-
-void initializeKeys(){
-   for ( int i = 0; i < keys.length; i++ ) {
-    keys[i] = new Key( i * 75, 150, 75, 150, noteNames[i], color(255), color(0) );
-  }
-  for ( int i = 0; i < keys2.length; i++ ) {
-    if(i < 2){
-      keys2[i] = new Key( 60 + i * 75, 150, 30, 75, noteNames2[i], color(0), color(255) );
-
-    } else if(i >= 2){
-      keys2[i] = new Key( 60 + (i+1) * 75, 150, 30, 75, noteNames2[i], color(0), color(255) );
-    }
-  }
-}
-
 void stopRecording(){
     fill(0); 
     textSize(20); 
@@ -67,9 +45,3 @@ void stopRecording(){
     minim.stop();
     super.stop();
 }
-
-//void playFourTickMetronome(){
-//  metronomeFourTick.rewind();
-//  metronomeFourTick.setPlaybackRate(4);
-//  metronomeFourTick.play();
-//}

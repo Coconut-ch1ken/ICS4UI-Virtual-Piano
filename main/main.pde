@@ -48,40 +48,36 @@ String recordingName = "piano_recording";
 
 // Metronome variables
 boolean metronomeOn = false;
-int bpm = 240 ; // beats per minute
+int bpm;
 int metronomeInterval;
 long lastMetronomeTick = 0;
 
 int recorderCount = 0;
 
 void setup() {
-  size(600, 300);
+  size(800, 600);
   minim = new Minim(this);
-
   // Set up audio output and recorder
   out = minim.getLineOut(Minim.STEREO, 4096, 44100);
   //recorder = minim.createRecorder(out, recordingName + ".wav");
   metronome = minim.loadFile("metronome.mp3");
   
-  //metronomeFourTick = minim.loadFile("metronome-4-tick.mp3");
-
   // Initialize the piano system
   initialize();
-  createGUI();
+  
 }
 
 void draw() {
   if ( startRecording == true ){ 
-  
-  if(recorderCount <= 1){
-  initializeRecorder();
-  recorderCount += 1;
+    if(recorderCount <= 1){
+    initializeRecorder();
+    recorderCount += 1;
     }
   }
    
   
   background(255);
-
+  
   drawKeys();  
 
 
@@ -100,7 +96,7 @@ void draw() {
 }
 
 void stop(){ //function to ensure program closes properly
-     minim.stop();
+    minim.stop();
     super.stop(); 
 }
 
