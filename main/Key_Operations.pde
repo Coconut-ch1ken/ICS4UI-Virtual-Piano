@@ -9,7 +9,7 @@ void keyPressed() {
       if ( i == 7 ){ notes = append(notes, noteNames[i] + (pitch + 1)); }
       else {notes = append(notes, noteNames[i] + pitch); }
       
-      if (notes.length > 15){
+      if (notes.length > 20){
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
         notes = shorten(reverseNotes.toArray(new String[0]));
@@ -28,7 +28,7 @@ void keyPressed() {
       noteToPlay2.play();    // Play the note
       keys2[i].colour = color(211);
       notes = append(notes, noteNames2[i] + pitch);
-      if (notes.length > 15){
+      if (notes.length > 20){
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
         notes = shorten(reverseNotes.toArray(new String[0]));

@@ -43,7 +43,7 @@ void drawKeys(){
   rect(0, 420, width, 30);
   fill(255);
   textSize(20);
-  text(join(notes, " "), 300, 435);
+  text(join(notes, " "), width/2, 435);
 }
 
 class Key {

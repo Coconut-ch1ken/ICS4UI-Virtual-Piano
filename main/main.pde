@@ -11,6 +11,8 @@ AudioRecorder recorder;
 FilePlayer[][] allAudioFilesOfTheNotes;
 FilePlayer[][] allAudioFilesOfTheNotesTwo;
 
+//Background
+PImage background;
 
 AudioPlayer metronome;
 AudioPlayer metronomeFourTick;
@@ -65,19 +67,22 @@ void setup() {
   // Initialize the piano system
   initialize();
   
+  //Background
+  background = loadImage("background.png");
 }
 
 void draw() {
   if ( startRecording == true ){ 
     if(recorderCount <= 1){
-    initializeRecorder();
-    recorderCount += 1;
-    }
+      initializeRecorder();
+      recorderCount += 1;
+    } 
   }
-   
+ 
   
   background(255);
-  
+  image(background, 0, 0); 
+
   drawKeys();  
 
 
