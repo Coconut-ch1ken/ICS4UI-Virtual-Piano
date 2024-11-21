@@ -32,6 +32,7 @@ public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopR
   songNames = append(songNames, recordingName);
   printArray(songNames);
   saveStrings("savedSongs.txt",songNames);
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
   windowName = "nameSong";
 } //_CODE_:stopRecord:494914:
 
