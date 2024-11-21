@@ -29,6 +29,9 @@ public void recordButton_click(GButton source, GEvent event) { //_CODE_:recordBu
 
 public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopRecord:494914:
   stopRecording();
+  songNames = append(songNames, recordingName);
+  printArray(songNames);
+  saveStrings("savedSongs.txt",songNames);
   windowName = "nameSong";
 } //_CODE_:stopRecord:494914:
 
@@ -83,7 +86,7 @@ public void createGUI(){
   stopRecord.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   stopRecord.addEventHandler(this, "endRecordButton_click");
   Saved_Songs = new GDropList(this, 259, 191, 278, 80, 3, 10);
-  Saved_Songs.setItems(loadStrings("list_365739"), 0);
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
   Saved_Songs.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   Saved_Songs.addEventHandler(this, "savedSongsList_click");
   Song_Name = new GTextField(this, 146, 298, 494, 52, G4P.SCROLLBARS_NONE);

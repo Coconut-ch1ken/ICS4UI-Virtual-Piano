@@ -4,6 +4,7 @@ import ddf.minim.ugens.*;
 import g4p_controls.*;
 import java.util.*;
 
+
 // Minim initialization
 Minim minim;
 AudioOutput out;
@@ -56,6 +57,9 @@ long lastMetronomeTick = 0;
 
 int recorderCount = 0;
 
+
+String[] songNames;
+
 void setup() {
   size(800, 600);
   minim = new Minim(this);
@@ -66,9 +70,12 @@ void setup() {
   
   // Initialize the piano system
   initialize();
+  //printArray(songNames);
   
   //Background
   background = loadImage("background.png");
+  songNames = loadStrings("savedSongs.txt");
+ 
 }
 
 void draw() {
@@ -103,6 +110,8 @@ void draw() {
 void stop(){ //function to ensure program closes properly
     minim.stop();
     super.stop(); 
+    
+
 }
 
 void initializeRecorder(){
