@@ -14,10 +14,10 @@ void drawKeys(){
     keys2[i].display();
   }
   fill(150);
-  rect(0, 120, width, 30);
+  rect(0, 420, width, 30);
   fill(255);
   textSize(20);
-  text(join(notes, " "), 300, 135);
+  text(join(notes, " "), 300, 435);
 }
 
 class Key {

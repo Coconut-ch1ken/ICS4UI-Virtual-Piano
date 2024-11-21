@@ -55,7 +55,7 @@ long lastMetronomeTick = 0;
 int recorderCount = 0;
 
 void setup() {
-  size(600, 300);
+  size(600, 600);
   minim = new Minim(this);
 
   // Set up audio output and recorder
