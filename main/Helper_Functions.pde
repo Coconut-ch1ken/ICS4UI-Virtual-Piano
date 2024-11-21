@@ -37,11 +37,8 @@ void loadAudioFiles() {
 
 void stopRecording(){
     fill(0); 
-    textSize(20); 
-    text("Saved as a piano_recording.wav", width/2, height/2); 
+    textSize(100); 
+    text("Saved as "+ recordingName + ".wav", width/2, 200); 
     recorder.endRecord(); 
     recorder.save();
-    
-    minim.stop();
-    super.stop();
 }
