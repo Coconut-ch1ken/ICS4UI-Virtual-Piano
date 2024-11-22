@@ -25,6 +25,7 @@ void displayScreen() {
     playPianoButton.setVisible(true);
     pitchUpButton.setVisible(false);
     pitchDownButton.setVisible(false);
+    deleteButton.setVisible(false);
   }
   
   // Display initial screen
@@ -68,6 +69,7 @@ void displayScreen() {
     playPianoButton.setVisible(false);
     pitchUpButton.setVisible(true);
     pitchDownButton.setVisible(true);
+    deleteButton.setVisible(false);
   }
   
   
@@ -89,5 +91,6 @@ void displayScreen() {
     playPianoButton.setVisible(false);
     pitchUpButton.setVisible(false);
     pitchDownButton.setVisible(false);
+    deleteButton.setVisible(true);
   }
 }

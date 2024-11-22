@@ -4,6 +4,8 @@ int bpm = 60;
 int metronomeInterval;
 long lastMetronomeTick = 0;
 
+boolean canPlay = true;
+
 // Create Note objects with corresponding FilePlayer
 void createNoteObjects() {
   for (int i = 0; i < noteNames.length; i++) {
@@ -31,7 +33,9 @@ class Note {
   }
   
   void play() {
-    this.player.rewind();
-    this.player.play();
+   if ( canPlay == true ){
+      this.player.rewind();
+      this.player.play();
+    }
   }
 }
