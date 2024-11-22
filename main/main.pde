@@ -4,19 +4,8 @@ import ddf.minim.ugens.*;
 import g4p_controls.*;
 import java.util.*;
 
-
-// Minim initialization
-Minim minim;
-AudioOutput out;
-AudioRecorder recorder;
-FilePlayer[][] allAudioFilesOfTheNotes;
-FilePlayer[][] allAudioFilesOfTheNotesTwo;
-
 //Background
 PImage background;
-
-AudioPlayer metronome;
-AudioPlayer metronomeFourTick;
 
 // Piano Key and Note System
 String[] noteNames = {"C", "D", "E", "F", "G", "A", "B", "C"};
@@ -47,76 +36,15 @@ char pitchdown = '-';
 char pitchup = '=';
 char recordKey = 'p';
 
-String recordingName = "piano_recording";
-
-// Metronome variables
-boolean metronomeOn = false;
-int bpm;
-int metronomeInterval;
-long lastMetronomeTick = 0;
-
-int recorderCount = 0;
-
-
-String[] songNames;
-
 void setup() {
   size(800, 600);
   minim = new Minim(this);
-  // Set up audio output and recorder
+  // Set up audio output
   out = minim.getLineOut(Minim.STEREO, 4096, 44100);
-  //recorder = minim.createRecorder(out, recordingName + ".wav");
   metronome = minim.loadFile("metronome.mp3");
-  
-  // Initialize the piano system
-  initialize();
-  //printArray(songNames);
-  
-  //Background
-  background = loadImage("background.png");
-  songNames = loadStrings("savedSongs.txt");
- 
+  initialize();  // Initialize the piano system
 }
 
 void draw() {
-  if ( startRecording == true ){ 
-    if(recorderCount <= 1){
-      initializeRecorder();
-      recorderCount += 1;
-    } 
-  }
- 
-  
-  background(255);
-  image(background, 0, 0); 
-
-  drawKeys();  
-
-
-  // Metronome functionality
-  if (metronomeOn) {
-    long currentNanoTime = System.nanoTime(); // Get the current time in nanoseconds
-    
-    // Calculate the time difference in nanoseconds
-    if (currentNanoTime - lastMetronomeTick >= (60.0 / bpm) * 1000000000) {
-      metronome.rewind();
-      metronome.play();
-      lastMetronomeTick = currentNanoTime;
-    }
-  }
-//ADDING A COMMENT
-}
-
-void stop(){ //function to ensure program closes properly
-    minim.stop();
-    super.stop(); 
-    
-
-}
-
-void initializeRecorder(){
-
-    recorder = minim.createRecorder(out, recordingName + ".wav");
-    recorder.beginRecord();
-    
+  displayScreen();
 }

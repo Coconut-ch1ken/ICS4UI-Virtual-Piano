@@ -16,8 +16,6 @@ void keyPressed() {
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
         notes = reverseNotes.toArray(new String[0]);
-        //println("Normal: ", join(notes, " "));
-        //println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
       }
     }
   }
@@ -35,8 +33,6 @@ void keyPressed() {
         reverseNotes = new ArrayList<String>(Arrays.asList(notes));
         Collections.reverse(reverseNotes);
         notes = reverseNotes.toArray(new String[0]);
-        //println("Normal: ", join(notes, " "));
-        //println("Revere: ", join(reverseNotes.toArray(new String[0]), " "));
       }
     }
   }

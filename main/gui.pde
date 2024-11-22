@@ -32,13 +32,13 @@ public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopR
   songNames = append(songNames, recordingName);
   printArray(songNames);
   saveStrings("savedSongs.txt",songNames);
-  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
-  windowName = "nameSong";
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);  // update the contents in the dropdown list
 } //_CODE_:stopRecord:494914:
 
 public void savedSongsList_click(GDropList source, GEvent event) { //_CODE_:Saved_Songs:365739:
-  selectedSong = Saved_Songs.getSelectedText();
-  windowName = "playSong";
+  selectedSong = source.getSelectedText();
+  temp = minim.loadFile(selectedSong + ".mp3");
+  
 } //_CODE_:Saved_Songs:365739:
 
 public void changeSongName(GTextField source, GEvent event) { //_CODE_:Song_Name:826993:
@@ -46,20 +46,44 @@ public void changeSongName(GTextField source, GEvent event) { //_CODE_:Song_Name
 } //_CODE_:Song_Name:826993:
 
 public void backOneSecondButton_click(GButton source, GEvent event) { //_CODE_:oneSecondBack:359539:
-  println("button - GButton >> GEvent." + event + " @ " + millis());
+  int newPosition = max(0, temp.position() - 1000);
+  temp.cue(newPosition);
 } //_CODE_:oneSecondBack:359539:
 
 public void pausePlayingSongButton_click(GButton source, GEvent event) { //_CODE_:pausePlayingSongButton:600804:
-  println("paysePlayingSongButton - GButton >> GEvent." + event + " @ " + millis());
+  if (temp.isPlaying()) { temp.pause(); }  // If playing, pause it
+  else { temp.play(); }  // If paused, resume playback
 } //_CODE_:pausePlayingSongButton:600804:
 
 public void forwardOneSecondButton_click(GButton source, GEvent event) { //_CODE_:oneSecondForward:727295:
-  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+  int newPosition = min(temp.length(), temp.position() + 1000);
+  temp.cue(newPosition);
 } //_CODE_:oneSecondForward:727295:
 
-public void endPlayingSongButton_click(GButton source, GEvent event) { //_CODE_:endPlayingSongButton:229623:
-  println("endPlayingSongButton - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:endPlayingSongButton:229623:
+public void startPlayingSongButton_click(GButton source, GEvent event) { //_CODE_:startPlayingSongButton:229623:
+  temp.rewind();
+  temp.play();
+} //_CODE_:startPlayingSongButton:229623:
+
+public void pitchUpButton_click(GButton source, GEvent event) { //_CODE_:pitchUpButton:681935:
+  pitch = min(7, pitch+1);
+} //_CODE_:pitchUpButton:681935:
+
+public void pitchDownButton_click(GButton source, GEvent event) { //_CODE_:pitchDownButton:602214:
+  pitch = max(1, pitch-1);
+} //_CODE_:pitchDownButton:602214:
+
+public void playSongButton_click(GButton source, GEvent event) { //_CODE_:playSongButton:424127:
+  windowName = "playSong";
+} //_CODE_:playSongButton:424127:
+
+public void goBackButton_click(GButton source, GEvent event) { //_CODE_:goBackButton:582580:
+  windowName = "main";
+} //_CODE_:goBackButton:582580:
+
+public void playPianoButton_click(GButton source, GEvent event) { //_CODE_:playPianoButton:889308:
+  windowName = "main";
+} //_CODE_:playPianoButton:889308:
 
 
 
@@ -91,22 +115,42 @@ public void createGUI(){
   Saved_Songs.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   Saved_Songs.addEventHandler(this, "savedSongsList_click");
   Song_Name = new GTextField(this, 146, 298, 494, 52, G4P.SCROLLBARS_NONE);
-  Song_Name.setText("Please put the name you want your song to be saved as");
+  Song_Name.setText("Song name");
   Song_Name.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   Song_Name.setOpaque(true);
   Song_Name.addEventHandler(this, "changeSongName");
   oneSecondBack = new GButton(this, 86, 380, 80, 30);
   oneSecondBack.setText("<-- 1s");
   oneSecondBack.addEventHandler(this, "backOneSecondButton_click");
-  pausePlayingSongButton = new GButton(this, 282, 378, 80, 30);
+  pausePlayingSongButton = new GButton(this, 461, 376, 80, 30);
   pausePlayingSongButton.setText("Pause");
   pausePlayingSongButton.addEventHandler(this, "pausePlayingSongButton_click");
   oneSecondForward = new GButton(this, 632, 375, 80, 30);
   oneSecondForward.setText("--> 1s");
   oneSecondForward.addEventHandler(this, "forwardOneSecondButton_click");
-  endPlayingSongButton = new GButton(this, 445, 377, 80, 30);
-  endPlayingSongButton.setText("End");
-  endPlayingSongButton.addEventHandler(this, "endPlayingSongButton_click");
+  startPlayingSongButton = new GButton(this, 288, 375, 80, 30);
+  startPlayingSongButton.setText("Start");
+  startPlayingSongButton.addEventHandler(this, "startPlayingSongButton_click");
+  pitchUpButton = new GButton(this, 41, 144, 80, 30);
+  pitchUpButton.setText("Pitch Up");
+  pitchUpButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  pitchUpButton.addEventHandler(this, "pitchUpButton_click");
+  pitchDownButton = new GButton(this, 40, 184, 80, 30);
+  pitchDownButton.setText("Pitch Down");
+  pitchDownButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  pitchDownButton.addEventHandler(this, "pitchDownButton_click");
+  playSongButton = new GButton(this, 356, 254, 80, 30);
+  playSongButton.setText("Play Song");
+  playSongButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  playSongButton.addEventHandler(this, "playSongButton_click");
+  goBackButton = new GButton(this, 355, 260, 80, 30);
+  goBackButton.setText("Go Back");
+  goBackButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  goBackButton.addEventHandler(this, "goBackButton_click");
+  playPianoButton = new GButton(this, 356, 216, 80, 30);
+  playPianoButton.setText("Play Piano");
+  playPianoButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  playPianoButton.addEventHandler(this, "playPianoButton_click");
 }
 
 // Variable declarations 
@@ -120,4 +164,9 @@ GTextField Song_Name;
 GButton oneSecondBack; 
 GButton pausePlayingSongButton; 
 GButton oneSecondForward; 
-GButton endPlayingSongButton; 
+GButton startPlayingSongButton; 
+GButton pitchUpButton; 
+GButton pitchDownButton; 
+GButton playSongButton; 
+GButton goBackButton; 
+GButton playPianoButton; 

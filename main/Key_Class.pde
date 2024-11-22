@@ -32,6 +32,7 @@ void drawKeys(){
   text("Press W, E, T, Y, U to play black keys", width / 2, 50);
   textSize(16);
   text("Pitch: " + pitch + "         Metronome BPM: " + bpm, width / 2, 80 );
+  
   textSize(32);
   for ( int i = 0; i < keys.length; i++ ) {
     keys[i].display();

@@ -1,3 +1,9 @@
+// Metronome variables
+boolean metronomeOn = false;
+int bpm = 60;
+int metronomeInterval;
+long lastMetronomeTick = 0;
+
 // Create Note objects with corresponding FilePlayer
 void createNoteObjects() {
   for (int i = 0; i < noteNames.length; i++) {
@@ -26,7 +32,6 @@ class Note {
   
   void play() {
     this.player.rewind();
-    //this.player.setGain(volume);
     this.player.play();
   }
 }
