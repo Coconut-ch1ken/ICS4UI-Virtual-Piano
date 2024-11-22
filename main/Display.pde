@@ -3,10 +3,12 @@ String windowName = "start";
 
 void displayScreen() {
   //Background
-  background = loadImage("background.png");
+  background = loadImage("bg.jpg");
+  logo = loadImage("TuneTap_logo.png");
   songNames = loadStrings("savedSongs.txt");
   background(255);
   image(background, 0, 0); 
+  if (logoVisible) image(logo, 300, 10);
   
   if (windowName.equals("start")){
   // Display/hide the relevant buttons
@@ -70,6 +72,7 @@ void displayScreen() {
     pitchUpButton.setVisible(true);
     pitchDownButton.setVisible(true);
     deleteButton.setVisible(false);
+    logoVisible = false;
   }
   
   

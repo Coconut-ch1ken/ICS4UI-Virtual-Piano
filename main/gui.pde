@@ -123,7 +123,7 @@ public void createGUI(){
   stopRecord.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   stopRecord.addEventHandler(this, "endRecordButton_click");
   Saved_Songs = new GDropList(this, 259, 191, 278, 80, 3, 10);
-  Saved_Songs.setItems(loadStrings("list_365739"), 0);
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
   Saved_Songs.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   Saved_Songs.addEventHandler(this, "savedSongsList_click");
   oneSecondBack = new GButton(this, 163, 379, 80, 30);
