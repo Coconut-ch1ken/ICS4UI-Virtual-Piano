@@ -30,7 +30,6 @@ public void recordButton_click(GButton source, GEvent event) { //_CODE_:recordBu
 public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopRecord:494914:
   stopRecording();
   songNames = append(songNames, recordingName);
-  printArray(songNames);
   saveStrings("savedSongs.txt",songNames);
   Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);  // update the contents in the dropdown list
 } //_CODE_:stopRecord:494914:
@@ -83,14 +82,32 @@ public void playPianoButton_click(GButton source, GEvent event) { //_CODE_:playP
 
 public void deleteButton_click(GButton source, GEvent event) { //_CODE_:deleteButton:649230:
   //
+  String filename = selectedSong+".wav";
+  songNames = removeSong(songNames,selectedSong);
+  printArray(songNames);
+  saveStrings("savedSongs.txt",songNames);
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
 
-  String filePath = "savedSongs.txt";
-  String songToDelete = selectedSong+".wav";
-  deleteLineFromFile(filePath, songToDelete);
+  try {
+    FileOutputStream fos = new FileOutputStream(filename);
+    fos.write(new byte[0]);
+    fos.close();
+    
+    File file = new File(filename);
+    file.setWritable(true);
+    file.setReadable(true);
+    file.setExecutable(true);
+    
+    FileInputStream fis = new FileInputStream(file);
+    fis.close();
+    file.delete();
+    if(file.delete()){println("deleted");}
+    else{println("failed delete");}
+} catch(IOException e){println("Io exception");}
 
-  // Delete the .wav file
-  new File(selectedSong + ".wav").delete();
-} //_CODE_:deleteButton:649230:
+  }
+  
+  //_CODE_:deleteButton:649230:
 
 public void changeSongName(GTextField source, GEvent event) { //_CODE_:songName:838627:
   recordingName = source.getText();
@@ -123,7 +140,7 @@ public void createGUI(){
   stopRecord.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   stopRecord.addEventHandler(this, "endRecordButton_click");
   Saved_Songs = new GDropList(this, 259, 191, 278, 80, 3, 10);
-  Saved_Songs.setItems(loadStrings("list_365739"), 0);
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
   Saved_Songs.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   Saved_Songs.addEventHandler(this, "savedSongsList_click");
   oneSecondBack = new GButton(this, 157, 371, 80, 30);

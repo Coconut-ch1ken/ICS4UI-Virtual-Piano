@@ -38,3 +38,23 @@ void deleteLineFromFile(String filePath, String lineToDelete) {
     println("Error: " + e.getMessage());
   }
 }
+
+String[] removeSong(String[] array, String songToRemove){
+  
+ int count = 0;
+ for(String song : array){
+   if(!song.equals(songToRemove)){
+    count++; 
+   }
+ }
+  String[] newArray = new String[count];
+  int index = 0;
+  
+  for(String song : array){
+   if(!song.equals(songToRemove)){
+     newArray[index++] = song;
+   }
+  }
+  
+  return newArray;
+}
