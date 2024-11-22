@@ -37,7 +37,7 @@ public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopR
 
 public void savedSongsList_click(GDropList source, GEvent event) { //_CODE_:Saved_Songs:365739:
   selectedSong = source.getSelectedText();
-  temp = minim.loadFile(selectedSong + ".mp3");
+  temp = minim.loadFile(selectedSong + ".wav");
   
 } //_CODE_:Saved_Songs:365739:
 
