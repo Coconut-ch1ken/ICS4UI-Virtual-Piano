@@ -41,10 +41,6 @@ public void savedSongsList_click(GDropList source, GEvent event) { //_CODE_:Save
   
 } //_CODE_:Saved_Songs:365739:
 
-public void changeSongName(GTextField source, GEvent event) { //_CODE_:Song_Name:826993:
-  recordingName = source.getText();
-} //_CODE_:Song_Name:826993:
-
 public void backOneSecondButton_click(GButton source, GEvent event) { //_CODE_:oneSecondBack:359539:
   int newPosition = max(0, temp.position() - 1000);
   temp.cue(newPosition);
@@ -96,6 +92,11 @@ public void deleteButton_click(GButton source, GEvent event) { //_CODE_:deleteBu
   new File(selectedSong + ".wav").delete();
 } //_CODE_:deleteButton:649230:
 
+public void changeSongName(GTextField source, GEvent event) { //_CODE_:songName:838627:
+  recordingName = source.getText();
+  if (event == GEvent.CLICKED) { canPlay = false; }
+} //_CODE_:songName:838627:
+
 
 
 // Create all the GUI controls. 
@@ -105,19 +106,19 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  metro = new GButton(this, 41, 92, 80, 30);
+  metro = new GButton(this, 362, 141, 80, 30);
   metro.setText("Toggle Metronome");
   metro.addEventHandler(this, "toggleMetronome");
-  metroSpeed = new GSlider(this, 463, 98, 287, 40, 10.0);
+  metroSpeed = new GSlider(this, 258, 94, 287, 40, 10.0);
   metroSpeed.setLimits(60, 0, 240);
   metroSpeed.setNumberFormat(G4P.INTEGER, 0);
   metroSpeed.setOpaque(false);
   metroSpeed.addEventHandler(this, "changeMetronomeSpeed");
-  recordButton = new GButton(this, 657, 185, 80, 30);
+  recordButton = new GButton(this, 660, 180, 80, 30);
   recordButton.setText("Start Record");
   recordButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   recordButton.addEventHandler(this, "recordButton_click");
-  stopRecord = new GButton(this, 658, 227, 80, 30);
+  stopRecord = new GButton(this, 660, 220, 80, 30);
   stopRecord.setText("Stop Record");
   stopRecord.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   stopRecord.addEventHandler(this, "endRecordButton_click");
@@ -125,11 +126,6 @@ public void createGUI(){
   Saved_Songs.setItems(loadStrings("list_365739"), 0);
   Saved_Songs.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   Saved_Songs.addEventHandler(this, "savedSongsList_click");
-  Song_Name = new GTextField(this, 146, 298, 494, 52, G4P.SCROLLBARS_NONE);
-  Song_Name.setText("Song name");
-  Song_Name.setLocalColorScheme(GCScheme.GOLD_SCHEME);
-  Song_Name.setOpaque(true);
-  Song_Name.addEventHandler(this, "changeSongName");
   oneSecondBack = new GButton(this, 163, 379, 80, 30);
   oneSecondBack.setText("<-- 1s");
   oneSecondBack.addEventHandler(this, "backOneSecondButton_click");
@@ -142,12 +138,12 @@ public void createGUI(){
   startPlayingSongButton = new GButton(this, 361, 378, 80, 30);
   startPlayingSongButton.setText("Start");
   startPlayingSongButton.addEventHandler(this, "startPlayingSongButton_click");
-  pitchUpButton = new GButton(this, 41, 144, 80, 30);
-  pitchUpButton.setText("Pitch Up");
+  pitchUpButton = new GButton(this, 45, 180, 80, 30);
+  pitchUpButton.setText("Octave Up");
   pitchUpButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   pitchUpButton.addEventHandler(this, "pitchUpButton_click");
-  pitchDownButton = new GButton(this, 40, 184, 80, 30);
-  pitchDownButton.setText("Pitch Down");
+  pitchDownButton = new GButton(this, 45, 220, 80, 30);
+  pitchDownButton.setText("Octave Down");
   pitchDownButton.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   pitchDownButton.addEventHandler(this, "pitchDownButton_click");
   playSongButton = new GButton(this, 356, 254, 80, 30);
@@ -165,6 +161,10 @@ public void createGUI(){
   deleteButton = new GButton(this, 362, 466, 80, 30);
   deleteButton.setText("Delete");
   deleteButton.addEventHandler(this, "deleteButton_click");
+  songName = new GTextField(this, 150, 300, 500, 50, G4P.SCROLLBARS_NONE);
+  songName.setText("Song Name");
+  songName.setOpaque(true);
+  songName.addEventHandler(this, "changeSongName");
 }
 
 // Variable declarations 
@@ -174,7 +174,6 @@ GSlider metroSpeed;
 GButton recordButton; 
 GButton stopRecord; 
 GDropList Saved_Songs; 
-GTextField Song_Name; 
 GButton oneSecondBack; 
 GButton pausePlayingSongButton; 
 GButton oneSecondForward; 
@@ -185,3 +184,4 @@ GButton playSongButton;
 GButton goBackButton; 
 GButton playPianoButton; 
 GButton deleteButton; 
+GTextField songName; 

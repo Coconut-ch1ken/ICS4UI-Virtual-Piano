@@ -14,7 +14,7 @@ void displayScreen() {
     oneSecondForward.setVisible(false);
     pausePlayingSongButton.setVisible(false);
     startPlayingSongButton.setVisible(false);
-    Song_Name.setVisible(false);
+    songName.setVisible(false);
     metro.setVisible(false);
     metroSpeed.setVisible(false);
     recordButton.setVisible(false);
@@ -58,7 +58,7 @@ void displayScreen() {
     oneSecondForward.setVisible(false);
     pausePlayingSongButton.setVisible(false);
     startPlayingSongButton.setVisible(false);
-    Song_Name.setVisible(true);
+    songName.setVisible(true);
     metro.setVisible(true);
     metroSpeed.setVisible(true);
     recordButton.setVisible(true);
@@ -80,7 +80,7 @@ void displayScreen() {
     oneSecondForward.setVisible(true);
     pausePlayingSongButton.setVisible(true);
     startPlayingSongButton.setVisible(true);
-    Song_Name.setVisible(false);
+    songName.setVisible(false);
     metro.setVisible(false);
     metroSpeed.setVisible(false);
     recordButton.setVisible(false);
