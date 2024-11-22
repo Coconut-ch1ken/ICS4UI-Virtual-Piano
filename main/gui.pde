@@ -87,23 +87,23 @@ public void deleteButton_click(GButton source, GEvent event) { //_CODE_:deleteBu
   printArray(songNames);
   saveStrings("savedSongs.txt",songNames);
   Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
-
-  try {
-    FileOutputStream fos = new FileOutputStream(filename);
-    fos.write(new byte[0]);
-    fos.close();
+  
+//  try {
+//    FileOutputStream fos = new FileOutputStream(filename);
+//    fos.write(new byte[0]);
+//    fos.close();
     
-    File file = new File(filename);
-    file.setWritable(true);
-    file.setReadable(true);
-    file.setExecutable(true);
+//    File file = new File(filename);
+//    file.setWritable(true);
+//    file.setReadable(true);
+//    file.setExecutable(true);
     
-    FileInputStream fis = new FileInputStream(file);
-    fis.close();
-    file.delete();
-    if(file.delete()){println("deleted");}
-    else{println("failed delete");}
-} catch(IOException e){println("Io exception");}
+//    FileInputStream fis = new FileInputStream(file);
+//    fis.close();
+//    file.delete();
+//    if(file.delete()){println("deleted");}
+//    else{println("failed delete");}
+//} catch(IOException e){println("Io exception");}
 
   }
   

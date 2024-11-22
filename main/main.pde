@@ -47,6 +47,12 @@ void setup() {
   // Set up audio output
   out = minim.getLineOut(Minim.STEREO, 4096, 44100);
   metronome = minim.loadFile("metronome.mp3");
+  
+  String fileName = "seven1.wav";
+  String filePath = sketchPath(fileName);
+  
+  File file = new File(filePath);
+  file.delete();
   initialize();  // Initialize the piano system
 }
 
