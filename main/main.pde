@@ -6,6 +6,8 @@ import java.util.*;
 
 //Background
 PImage background;
+PImage logo;
+Boolean logoVisible = true;
 
 // Piano Key and Note System
 String[] noteNames = {"C", "D", "E", "F", "G", "A", "B", "C"};

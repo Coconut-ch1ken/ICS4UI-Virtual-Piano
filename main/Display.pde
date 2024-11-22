@@ -4,9 +4,13 @@ String windowName = "start";
 void displayScreen() {
   //Background
   background = loadImage("background.png");
+  logo = loadImage("TuneTap_logo.png");
   songNames = loadStrings("savedSongs.txt");
   background(255);
   image(background, 0, 0); 
+  if (logoVisible) {
+    image(logo, 300, 10);
+  }
   
   if (windowName.equals("start")){
   // Display/hide the relevant buttons
@@ -68,6 +72,7 @@ void displayScreen() {
     playPianoButton.setVisible(false);
     pitchUpButton.setVisible(true);
     pitchDownButton.setVisible(true);
+    logoVisible = false;
   }
   
   
