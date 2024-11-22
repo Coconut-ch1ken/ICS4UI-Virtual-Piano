@@ -14,7 +14,6 @@ void initializeKeys() {
   for (int i = 0; i < keys2.length; i++) {
     float xOffset;
     if (i < 2) { xOffset = 60 + i * whiteKeyWidth; } 
-    
     else { xOffset = 60 + (i + 1) * whiteKeyWidth; }
     
     xOffset += whiteKeyWidth / 5; // Center the black key between adjacent white keys
@@ -25,23 +24,39 @@ void initializeKeys() {
 
 
 void drawKeys(){
+  fill(239, 219, 167);
+  stroke(55, 29, 16);
+  strokeWeight(5);
+  rect(150, -5, 500, 105, 0, 0, 28, 28);
+  noStroke();
   fill(0);
   textSize(24);
   textAlign(CENTER, CENTER);
   text("Press A, S, D, F, G, H, J, K to play white keys", width / 2, 20);
   text("Press W, E, T, Y, U to play black keys", width / 2, 50);
   textSize(16);
-  text("Pitch: " + pitch + "         Metronome BPM: " + bpm, width / 2, 80 );
+  text("Metronome BPM: " + bpm, width / 2, 80 );
   
   textSize(32);
-  for ( int i = 0; i < keys.length; i++ ) {
-    keys[i].display();
-  }
-  for ( int i = 0; i < keys2.length; i++ ) {
-    keys2[i].display();
-  }
+  for ( int i = 0; i < keys.length; i++ ) keys[i].display();
+  for ( int i = 0; i < keys2.length; i++ ) keys2[i].display();
+  
+  //Octave
+  fill(239, 219, 167);
+  stroke(55, 29, 16);
+  strokeWeight(3);
+  rect(0, 380, 120, 43, 0, 10, 0 , 0);
+  noStroke();
+  fill(55, 29, 16);
+  textSize(20);
+  text("Octave: " + pitch, 60, 400);
+  
+  //Note save
   fill(150);
+  stroke(75);
+  strokeWeight(5);
   rect(0, 420, width, 30);
+  noStroke();
   fill(255);
   textSize(20);
   text(join(notes, " "), width/2, 435);

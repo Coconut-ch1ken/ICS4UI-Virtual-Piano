@@ -3,7 +3,7 @@ String windowName = "start";
 
 void displayScreen() {
   //Background
-  background = loadImage("background.png");
+  background = loadImage("bg.jpg");
   logo = loadImage("TuneTap_logo.png");
   songNames = loadStrings("savedSongs.txt");
   background(255);
