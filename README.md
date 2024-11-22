@@ -1,3 +1,1 @@
-say
-I love hitgub!
-hi
+Coded for ICS4UI-02 assignment
