@@ -41,6 +41,7 @@ void keyPressed() {
   // Some other keyboard operations that can be done
   if (key == pitchdown) { pitch = max(1, pitch-1); }
   else if (key == pitchup) { pitch = min(7, pitch+1); }
+  else if (key == '\n') { canPlay = true; }
 }
 
 void keyReleased() {
