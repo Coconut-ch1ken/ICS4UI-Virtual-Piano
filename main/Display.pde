@@ -6,7 +6,7 @@ PImage background;
 PImage logo;
 Boolean logoVisible = true;
 boolean savedNotificationVisible = false;
-int t = 0;
+int t = 0;  // a variable to assist the display of the notification of "song saved as xxx.wav"
 
 void displayScreen() {
   //Background
@@ -17,15 +17,17 @@ void displayScreen() {
   image(background, 0, 0); 
   if (logoVisible) image(logo, 300, 10);
   
+  // This if statement determines if the notification of "song saved as xxx.wav" will display or not
   if (savedNotificationVisible){
-    fill(255);
-    textSize(50);
-    text("Saved as "+ recordingName + ".wav", width/2, 375);
-    t ++;
+    fill(200);
+    textSize(30);
+    text("Saved as "+ recordingName + ".wav", width/2, 380);
+    t ++;  // increase the varable t by 1
     
+    // if t has been increased by 120, namely 2 seconds (since the draw() defaults at 60 frames per second)
     if ( t > 121 ){
       t = 0;
-      savedNotificationVisible = false;
+      savedNotificationVisible = false;  // hide the notification
     }
   }
   

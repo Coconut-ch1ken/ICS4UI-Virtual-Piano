@@ -14,6 +14,13 @@
  * =========================================================
  */
 
+int pitch = 4;
+float volume;
+AudioPlayer temp;
+
+// this could be main or playSong
+String selectedSong;
+
 public void toggleMetronome(GButton source, GEvent event) { //_CODE_:metro:804595:
   metronomeOn = !metronomeOn;
 } //_CODE_:metro:804595:

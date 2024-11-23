@@ -34,8 +34,8 @@ class Note {
   
   void play() {
    if ( canPlay == true ){
-      this.player.rewind();
-      this.player.play();
+      this.player.rewind();  // make the player play from its beginning
+      this.player.play();    // play the player
     }
   }
 }
