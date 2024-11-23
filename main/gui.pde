@@ -31,7 +31,8 @@ public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopR
   savedNotificationVisible = true;
   songNames = append(songNames, recordingName);
   saveStrings("savedSongs.txt",songNames);
-  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);  // update the contents in the dropdown list
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
+  // update the contents in the dropdown list
 } //_CODE_:stopRecord:494914:
 
 public void savedSongsList_click(GDropList source, GEvent event) { //_CODE_:Saved_Songs:365739:
@@ -82,29 +83,16 @@ public void playPianoButton_click(GButton source, GEvent event) { //_CODE_:playP
 
 public void deleteButton_click(GButton source, GEvent event) { //_CODE_:deleteButton:649230:
   if (temp != null) {
-    temp.close(); // Close the audio player
-  }
-  
-  minim.stop(); // Stop Minim completely to release resources
-  
-  // Attempt to delete the file
-  String fileName = selectedSong + ".wav";
-  filesToDelete.add(fileName);
-  
-  File file = new File(fileName);
-  if (file.delete()) {
-    println("File deleted successfully.");
-  } else {
-    println("Failed to delete the file. It may still be locked.");
-  }
+   temp.close();}
+  String fileName = selectedSong+".wav";
+  String filePath = sketchPath(fileName);
+  File file = new File(filePath);
+  file.delete();
   
   // Update saved songs list
   songNames = removeSong(songNames, selectedSong);
   saveStrings("savedSongs.txt", songNames);
   Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
-  
-  // Reinitialize Minim for further use
-  minim = new Minim(this);
 } //_CODE_:deleteButton:649230:
 
 

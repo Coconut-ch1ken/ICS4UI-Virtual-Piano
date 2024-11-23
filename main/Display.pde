@@ -18,9 +18,9 @@ void displayScreen() {
   if (logoVisible) image(logo, 300, 10);
   
   if (savedNotificationVisible){
-    fill(0);
-    textSize(100);
-    text("Saved as "+ recordingName + ".wav", width/2, 200);
+    fill(255);
+    textSize(50);
+    text("Saved as "+ recordingName + ".wav", width/2, 375);
     t ++;
     
     if ( t > 121 ){
