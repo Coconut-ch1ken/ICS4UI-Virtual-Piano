@@ -24,11 +24,11 @@ public void changeMetronomeSpeed(GSlider source, GEvent event) { //_CODE_:metroS
 
 public void recordButton_click(GButton source, GEvent event) { //_CODE_:recordButton:983280:
   startRecording = true;
-  //recorder.beginRecord();
 } //_CODE_:recordButton:983280:
 
 public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopRecord:494914:
   stopRecording();
+  savedNotificationVisible = true;
   songNames = append(songNames, recordingName);
   saveStrings("savedSongs.txt",songNames);
   Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);  // update the contents in the dropdown list
@@ -36,7 +36,6 @@ public void endRecordButton_click(GButton source, GEvent event) { //_CODE_:stopR
 
 public void savedSongsList_click(GDropList source, GEvent event) { //_CODE_:Saved_Songs:365739:
   selectedSong = source.getSelectedText();
-  temp = minim.loadFile(selectedSong + ".wav");
   
 } //_CODE_:Saved_Songs:365739:
 
@@ -56,6 +55,7 @@ public void forwardOneSecondButton_click(GButton source, GEvent event) { //_CODE
 } //_CODE_:oneSecondForward:727295:
 
 public void startPlayingSongButton_click(GButton source, GEvent event) { //_CODE_:startPlayingSongButton:229623:
+  temp = minim.loadFile(selectedSong + ".wav");
   temp.rewind();
   temp.play();
 } //_CODE_:startPlayingSongButton:229623:
@@ -81,33 +81,32 @@ public void playPianoButton_click(GButton source, GEvent event) { //_CODE_:playP
 } //_CODE_:playPianoButton:889308:
 
 public void deleteButton_click(GButton source, GEvent event) { //_CODE_:deleteButton:649230:
-  //
-  String filename = selectedSong+".wav";
-  songNames = removeSong(songNames,selectedSong);
-  printArray(songNames);
-  saveStrings("savedSongs.txt",songNames);
-  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
-
-  try {
-    FileOutputStream fos = new FileOutputStream(filename);
-    fos.write(new byte[0]);
-    fos.close();
-    
-    File file = new File(filename);
-    file.setWritable(true);
-    file.setReadable(true);
-    file.setExecutable(true);
-    
-    FileInputStream fis = new FileInputStream(file);
-    fis.close();
-    file.delete();
-    if(file.delete()){println("deleted");}
-    else{println("failed delete");}
-} catch(IOException e){println("Io exception");}
-
+  if (temp != null) {
+    temp.close(); // Close the audio player
   }
   
-  //_CODE_:deleteButton:649230:
+  minim.stop(); // Stop Minim completely to release resources
+  
+  // Attempt to delete the file
+  String fileName = selectedSong + ".wav";
+  filesToDelete.add(fileName);
+  
+  File file = new File(fileName);
+  if (file.delete()) {
+    println("File deleted successfully.");
+  } else {
+    println("Failed to delete the file. It may still be locked.");
+  }
+  
+  // Update saved songs list
+  songNames = removeSong(songNames, selectedSong);
+  saveStrings("savedSongs.txt", songNames);
+  Saved_Songs.setItems(loadStrings("savedSongs.txt"), 0);
+  
+  // Reinitialize Minim for further use
+  minim = new Minim(this);
+} //_CODE_:deleteButton:649230:
+
 
 public void changeSongName(GTextField source, GEvent event) { //_CODE_:songName:838627:
   recordingName = source.getText();

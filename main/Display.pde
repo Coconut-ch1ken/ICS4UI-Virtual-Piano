@@ -1,6 +1,13 @@
 // The initial window that is about to be displayed
 String windowName = "start";
 
+//Background
+PImage background;
+PImage logo;
+Boolean logoVisible = true;
+boolean savedNotificationVisible = false;
+int t = 0;
+
 void displayScreen() {
   //Background
   background = loadImage("bg.jpg");
@@ -9,6 +16,18 @@ void displayScreen() {
   background(255);
   image(background, 0, 0); 
   if (logoVisible) image(logo, 300, 10);
+  
+  if (savedNotificationVisible){
+    fill(0);
+    textSize(100);
+    text("Saved as "+ recordingName + ".wav", width/2, 200);
+    t ++;
+    
+    if ( t > 121 ){
+      t = 0;
+      savedNotificationVisible = false;
+    }
+  }
   
   if (windowName.equals("start")){
   // Display/hide the relevant buttons

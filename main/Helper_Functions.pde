@@ -1,5 +1,11 @@
 void initialize() {
-
+  
+  
+  // Set up minim variables
+  minim = new Minim(this);
+  out = minim.getLineOut(Minim.STEREO, 4096, 44100);
+  metronome = minim.loadFile("metronome.mp3");
+  
   createGUI();
   loadAudioFiles();
   createNoteObjects();
@@ -7,15 +13,34 @@ void initialize() {
   // Initialize key widths based on screen size
   whiteKeyWidth = width / 8.0; // Total 8 white keys
   blackKeyWidth = whiteKeyWidth * 0.4; // Black keys are 40% of white keys
-
   initializeKeys();
 
   displayScreen();
 }
 
+// Global ArrayList to store file names to delete
+ArrayList<String> filesToDelete = new ArrayList<>();
+
 void stop() { //function to ensure program closes properly
   minim.stop();
   super.stop();
+
+  for (String fileName : filesToDelete) {
+    File file = new File(fileName);
+    if (file.exists()) {
+      boolean success = file.delete();
+      if (success) {
+        println("Successfully deleted file: " + fileName);
+      } else {
+        println("Failed to delete file: " + fileName);
+      }
+    } else {
+      println("File not found: " + fileName);
+    }
+  }
+  // Clear the list after attempting deletion
+  filesToDelete.clear();
+
 }
 
 void deleteLineFromFile(String filePath, String lineToDelete) {
@@ -38,6 +63,7 @@ void deleteLineFromFile(String filePath, String lineToDelete) {
     println("Error: " + e.getMessage());
   }
 }
+
 
 String[] removeSong(String[] array, String songToRemove){
   

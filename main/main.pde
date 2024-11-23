@@ -7,10 +7,7 @@ import java.io.*;
 import java.nio.file.*;
 
 
-//Background
-PImage background;
-PImage logo;
-Boolean logoVisible = true;
+
 
 // Piano Key and Note System
 String[] noteNames = {"C", "D", "E", "F", "G", "A", "B", "C"};
@@ -39,14 +36,9 @@ char[] keyCodes2 = {'w', 'e', 't', 'y', 'u'};
 // Keys for controlling the virtual piano
 char pitchdown = '-';
 char pitchup = '=';
-char recordKey = 'p';
 
 void setup() {
   size(800, 600);
-  minim = new Minim(this);
-  // Set up audio output
-  out = minim.getLineOut(Minim.STEREO, 4096, 44100);
-  metronome = minim.loadFile("metronome.mp3");
   initialize();  // Initialize the piano system
 }
 

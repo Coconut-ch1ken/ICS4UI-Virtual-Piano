@@ -46,9 +46,6 @@ void initializeRecorder() {
 }
 
 void stopRecording() {
-  fill(0);
-  textSize(100);
-  text("Saved as "+ recordingName + ".wav", width/2, 200);
   recorder.endRecord();
   recorder.save();
 }
